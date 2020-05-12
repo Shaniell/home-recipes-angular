@@ -1,0 +1,18 @@
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 60px;
+}
+.nav-btn{
+    padding:10px;
+
+    &.logo{
+        margin: 60px;
+    }
+}
+
+.nav-btn:hover{
+    background-color: gray;
+}

@@ -1,0 +1,21 @@
+.ingedient {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 3px;
+  
+    & * {
+      padding: 5px;
+    }
+  }
+  
+  .ingedient-edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 3px;
+  
+    & * {
+      padding: 5px;
+    }
+  }

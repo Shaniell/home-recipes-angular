@@ -1,0 +1,7 @@
+<div class="directions-list">
+    <app-direction
+      *ngFor="let direction of directions ; let i = index"
+      [index]="i"
+      [direction]="direction"
+    ></app-direction>
+  </div>

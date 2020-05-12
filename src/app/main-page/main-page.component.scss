@@ -1,0 +1,20 @@
+
+.main-page{
+    display: flex;
+    flex-direction: column;
+}
+
+.content-section{
+    display: flex;
+    flex-direction: row;
+    margin:50px;
+}
+
+.recipes-list{
+    flex-basis: 30%;
+}
+
+.recipe{
+    flex-basis: 70%;
+    text-align: left;
+}

@@ -1,15 +1,15 @@
 <div>
-    <div class="ingedient" *ngIf="!IsEdit">
-      <button>-</button>
-      <div>Ingredient name</div>
-      <div>Amount</div>
-      <div>Measurement type</div>
+    <div class="ingedient" *ngIf="!isNew">
+      <button *ngIf="isEdit" (click)="remove()" >-</button>
+      <div>{{ingredient.ingredientName}}</div>
+      <div>{{ingredient.amount}}</div>
+      <div>{{ingredient.measurementType}}</div>
     </div>
 
-    <div class="ingedient-edit" *ngIf="IsEdit">
-      <button v-if="IsEdit">+</button>
-      <input type="text" placeholder="Ingredient name" />
-      <input type="text" placeholder="Amount" />
-      <input type="text" placeholder="Measurement type" />
+    <div class="ingedient-edit" *ngIf="isNew">
+      <button type="button" (click)="add()">+</button>
+      <input type="text" placeholder="Ingredient name" [(ngModel)]="ingredient.ingredientName" />
+      <input type="text" placeholder="Amount" [(ngModel)]="ingredient.amount" />
+      <input type="text" placeholder="Measurement type" [(ngModel)]="ingredient.measurementType" />
     </div>
   </div>

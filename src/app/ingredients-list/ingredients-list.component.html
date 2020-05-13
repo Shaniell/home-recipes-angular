@@ -1,8 +1,13 @@
 <div class="ingredients-list">
-    <app-ingredient [IsEdit]="false" ></app-ingredient>
-    <app-ingredient [IsEdit]="false" ></app-ingredient>
-    <app-ingredient [IsEdit]="false" ></app-ingredient>
-    <app-ingredient [IsEdit]="false" ></app-ingredient>
-    <app-ingredient [IsEdit]="false" ></app-ingredient>
-    <app-ingredient [IsEdit]="true" ></app-ingredient>
+    <app-ingredient *ngFor="let ingredient of ingredients" 
+                    [isEdit]="isEditMode" 
+                    [isNew]="false" 
+                    [ingredient]="ingredient" 
+                    (removeIngredient)="removeIngedient(ingredient)"></app-ingredient>
+
+
+                    <app-ingredient
+                    [isEdit]="isEditMode" 
+                    [isNew]="true"  
+                    (addIngredient)="addIngredient($event)"></app-ingredient>
 </div>

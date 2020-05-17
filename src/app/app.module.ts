@@ -13,6 +13,7 @@ import { IngredientsListComponent } from './ingredients-list/ingredients-list.co
 import { IngredientComponent } from './ingredient/ingredient.component';
 import { DirectionsListComponent } from './directions-list/directions-list.component';
 import { DirectionComponent } from './direction/direction.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DirectionComponent } from './direction/direction.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

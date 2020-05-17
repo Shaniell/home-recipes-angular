@@ -3,5 +3,13 @@
       *ngFor="let direction of directions ; let i = index"
       [index]="i+1"
       [direction]="direction"
+      [isEdit] = "isEdit"
+      [isNew] = "false"
     ></app-direction>
+    
+    <app-direction *ngIf="isEdit"
+    [isEdit] = "isEdit"
+    [isNew] = "true"
+  ></app-direction>
+    
   </div>

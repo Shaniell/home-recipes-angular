@@ -6,21 +6,24 @@ import { rejects } from 'assert';
 @Injectable({
   providedIn: 'root'
 })
+
 export class IngredientService {
 
   private localdbIngredients: Ingredient[] = [];
 
   constructor() { }
 
-  GetIngredients(recipeId : string) : Promise<Ingredient[]>{
+  GetIngredients(recipeId : string, directionId: string) : Promise<Ingredient[]>{
     let res:Ingredient[] = [];
 
-    res.push(new Ingredient("sugar", 2, "table spoons"));
-    res.push(new Ingredient("salt", 2, "tea spoons"));
-    res.push(new Ingredient("flour", 500, "gram"));
-    res.push(new Ingredient("Yeast", 1, "table spoon"));
-    res.push(new Ingredient("Oil", 1, "cup"));
-    res.push(new Ingredient("water", 2, "cups"));
+    res = [
+      new Ingredient("sugar", 2, "table spoons"),
+      new Ingredient("salt", 2, "tea spoons"),
+      new Ingredient("flour", 500, "gram"),
+      new Ingredient("Yeast", 1, "table spoon"),
+      new Ingredient("Oil", 1, "cup"),
+      new Ingredient("water", 2, "cups")
+    ];
 
     this.localdbIngredients = res;
 
@@ -29,7 +32,7 @@ export class IngredientService {
     });
   }
 
-  RemoveIngredient(recipeId : string, ingredient: Ingredient)  : Promise<Ingredient[]>{
+  RemoveIngredient(recipeId : string, directionId: string, ingredient: Ingredient)  : Promise<Ingredient[]>{
 
     let index = this.localdbIngredients.findIndex(x=> x.ingredientName == ingredient.ingredientName);
     this.localdbIngredients.splice(index,1);
@@ -45,7 +48,7 @@ export class IngredientService {
   }
 
 
-  AddIngredient(recipeId : string, ingredient: Ingredient)  :  Promise<Ingredient[]>{
+  AddIngredient(recipeId : string, directionId: string, ingredient: Ingredient)  :  Promise<Ingredient[]>{
 
     this.localdbIngredients.push(ingredient);
 

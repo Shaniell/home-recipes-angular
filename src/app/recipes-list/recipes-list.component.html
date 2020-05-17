@@ -1,7 +1,15 @@
-<div class="recipes-list">
+<div class="search-bar">
     <h3>Recipes</h3>
-    <a href="#">pasta</a>
-    <a href="#">shakshuka</a>
-    <a href="#">cookies</a>
-    <a href="#">sushi</a>
+    <input type="text" class="search-input" placeholder="search recipe" (click)="showList()" />
+    <button [ngClass]="isVisible ? 'display-list-btn ' : 'display-list-btn closed'" 
+            (click)="changeListVisibility()">
+        <fa-icon [icon]="faChevronDown" [ngClass]="isVisible ? 'icon-display' : 'icon-closed'"></fa-icon>
+    </button>
+</div>
+
+<div [ngClass]="isVisible ? 'recipes-list' : 'recipes-list hidden'">
+    <div><a href="#">pasta</a></div>
+    <div><a href="#">shakshuka</a></div>
+    <div><a href="#">cookies</a></div>
+    <div><a href="#">sushi</a></div>
 </div>

@@ -5,9 +5,7 @@
                     [ingredient]="ingredient" 
                     (removeIngredient)="removeIngedient(ingredient)"></app-ingredient>
 
-
-                    <app-ingredient
-                    [isEdit]="isEditMode" 
+    <app-ingredient *ngIf="isEditMode" [isEdit]="isEditMode" 
                     [isNew]="true"  
                     (addIngredient)="addIngredient($event)"></app-ingredient>
 </div>

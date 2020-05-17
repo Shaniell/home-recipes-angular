@@ -1,4 +1,142 @@
-.recipes-list{
+.search-bar {
     display: flex;
-    flex-direction: column; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .search-input {
+        height: 40px;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 11px 15px;
+        border-radius: 4px;
+        background-color: #00000000;
+        border: 0px solid #CBD8E3;
+        border-bottom: 1px solid #CBD8E3;
+        width: 100%;
+        outline: none;
+        box-sizing: border-box;
+        flex-basis: 40%;
+        transition: all 0.3s linear;
+        color: gray;
+
+        &:focus {
+            flex-basis: 70%;
+        }
+    }
+
+    
+}
+
+.display-list-btn {
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+    height: 30px;
+    width: 30px;
+    transition: transform 0.3s ease-in;
+    font-size: 20px;
+    transform: rotate(0deg);
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    &:hover {
+        transform: scale(1.5);
+    }
+
+    &.closed {
+        transform: rotate(180deg);
+        
+        transition: transform 0.3s ease-in;
+
+        &:hover {
+            transform: rotate(180deg) scale(1.5);
+        }
+    }
+}
+
+h3 {
+    color: #00966c;
+    font-size: 25px;
+}
+
+.recipes-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 0 15px 0;
+    animation: 0.5s slide-open forwards ease;
+    transition: transform 0.3s linear;
+
+
+    &.hidden {
+        transition: transform 0.3s linear;
+        animation: 0.5s slide-close forwards ease;
+
+
+        * {
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: 0px !important;
+            height: 0 !important;
+            transition: all 0.3s linear;
+        }
+    }
+
+    div {
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        margin: 15px 15px 0 0;
+        background: #ffeb3bbd; //#d3cebe
+        border-radius: 5px;
+        transition: all 0.3s linear;
+
+        &:last-child {
+            margin: 15px 0 15px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #8f8f8f;
+            font-size: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+}
+
+@keyframes slide-open {
+    from { transform: scaleY(0);}
+        to { transform: scaleY(1); }
+}
+
+@keyframes slide-close {
+    from { transform: scaleY(1); }
+        to { transform: scaleY(0);  }
+}
+
+/* Portrait and Landscape */
+@media screen and (max-width: 700px) {
+    .recipes-list {
+        margin: 0 0 10px 0;
+
+        div {
+            height: 120px;
+            margin: 10px 10px 0 0;
+
+            &:last-child {
+                margin: 10px 0 10px 0;
+            }
+
+            a {
+                font-size: 20px;
+            }
+        }
+    }
 }

@@ -6,15 +6,15 @@
 
 .content-section{
     display: flex;
-    flex-direction: row;
-    margin:50px;
+    flex-direction: column;
+    margin: 25px 50px;
 }
 
-.recipes-list{
-    flex-basis: 30%;
-}
+// .recipes-list{
+//     flex-basis: 30%;
+// }
 
 .recipe{
-    flex-basis: 70%;
+    // flex-basis: 70%;
     text-align: left;
 }

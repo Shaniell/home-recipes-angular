@@ -1,4 +1,23 @@
+<hr>
+<div class="direction"  *ngIf="!isNew" >
 
-<div class="direction">
-    {{index}} . {{direction}}
+    <button type="button" class="btn-remove" *ngIf="isEdit">-</button>
+
+    {{index}} . {{direction.type}} {{direction.step}} {{direction.preperationTime}}
+
+    <app-ingredients-list [ingredients]="direction.ingrediantsUsed" [isEditMode]="isEdit" [recipeId]="direction.recipeId" directionId="direction.directionId" ></app-ingredients-list>
+
+  </div>
+
+
+
+  <div class="direction"  *ngIf="isNew" >
+    <button type="button" class="btn-add">+</button> <br>
+    <input type="text" [(ngModel)]="direction.step" placeholder="step"><br>
+    <input type="text" [(ngModel)]="direction.preperationTime.hours" placeholder="hours">:
+    <input type="text" [(ngModel)]="direction.preperationTime.minutes" placeholder="minutes">:
+    <input type="text" [(ngModel)]="direction.preperationTime.seconds" placeholder="seconds">
+
+    <app-ingredients-list [(ingredients)]="direction.ingrediantsUsed" [isEditMode]="true" [recipeId]="direction.recipeId" directionId="direction.directionId" ></app-ingredients-list>
+
   </div>

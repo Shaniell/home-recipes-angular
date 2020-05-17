@@ -18,26 +18,28 @@ export class IngredientsListComponent implements OnInit {
   @Input()
   recipeId:string;
 
+  @Input()
+  directionId: string;
+
   constructor(private ingredientsService: IngredientService) { }
 
   ngOnInit(): void {
-    this.ingredientsService.GetIngredients(this.recipeId).then(data=>{
-      this.ingredients = data;
-      console.log(this.ingredients);
-    })
+    // this.ingredientsService.GetIngredients(this.recipeId, this.directionId).then(data=>{
+    //   this.ingredients = data;
+    // })
   }
 
   addIngredient(ing : Ingredient): void {
-    this.ingredientsService.AddIngredient(this.recipeId, ing).then(data=>{
-      this.ingredients = data;
-    })
+    // this.ingredientsService.AddIngredient(this.recipeId, this.directionId, ing).then(data=>{
+      this.ingredients.push(ing);
+    // })
   }
 
   removeIngedient(ing : Ingredient): void {
-    this.ingredientsService.RemoveIngredient(this.recipeId, ing).then(data=>{
-      console.log(data);
-      this.ingredients = data;
-    })
+    // this.ingredientsService.RemoveIngredient(this.recipeId, this.directionId, ing).then(data=>{
+      let index = this.ingredients.findIndex(x=> x.ingredientName == ing.ingredientName);
+      this.ingredients.splice(index, 1);
+    // })
   }
 
   

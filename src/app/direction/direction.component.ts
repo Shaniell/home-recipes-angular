@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Ingredient } from '../models/ingredient';
+import { TimeDuration } from '../helpers/TimeDuration';
+import { Direction } from '../models/direction';
 
 @Component({
   selector: 'app-direction',
@@ -8,7 +11,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DirectionComponent implements OnInit {
 
   @Input()
-  direction: string;
+  direction: Direction = new Direction();
+
+  @Input()
+  recipeId:string;
+
+  @Input()
+  isEdit: Boolean = true;
+
+  @Input()
+  isNew: Boolean = true;
+
   @Input()
   index: string;
 

@@ -1,13 +1,13 @@
 <div>
     <div class="ingedient" *ngIf="!isNew">
-      <button *ngIf="isEdit" (click)="remove()" >-</button>
+      <button class="btn-remove" *ngIf="isEdit" (click)="remove()" >-</button>
       <div>{{ingredient.ingredientName}}</div>
       <div>{{ingredient.amount}}</div>
       <div>{{ingredient.measurementType}}</div>
     </div>
 
     <div class="ingedient-edit" *ngIf="isNew">
-      <button type="button" (click)="add()">+</button>
+      <button type="button" class="btn-add" (click)="add()">+</button>
       <input type="text" placeholder="Ingredient name" [(ngModel)]="ingredient.ingredientName" />
       <input type="text" placeholder="Amount" [(ngModel)]="ingredient.amount" />
       <input type="text" placeholder="Measurement type" [(ngModel)]="ingredient.measurementType" />

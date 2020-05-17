@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-recipes-list',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipesListComponent implements OnInit {
 
+  isVisible: Boolean = true;
+  faChevronDown = faChevronDown;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  showList(){
+    this.isVisible = true;
+  }
+  changeListVisibility(){
+    this.isVisible = !this.isVisible;
   }
 
 }

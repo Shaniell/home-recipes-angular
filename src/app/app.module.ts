@@ -14,6 +14,7 @@ import { IngredientComponent } from './ingredient/ingredient.component';
 import { DirectionsListComponent } from './directions-list/directions-list.component';
 import { DirectionComponent } from './direction/direction.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TimePickerComponent } from './utils/time-picker/time-picker.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     IngredientsListComponent,
     IngredientComponent,
     DirectionsListComponent,
-    DirectionComponent
+    DirectionComponent,
+    TimePickerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,23 +1,55 @@
-<hr>
-<div class="direction"  *ngIf="!isNew" >
 
-    <button type="button" class="btn-remove" *ngIf="isEdit">-</button>
+<div class="direction">
 
-    {{index}} . {{direction.type}} {{direction.step}} {{direction.preperationTime}}
+  <div class="direction-header">
+    <div class="title">
+      {{isNew ? 'New' : ''}} step {{isNew ? '' : index}}
+    </div>
+    <div class="action-buttons" *ngIf="!isNew">
+      <button type="button" class="btn-edit" *ngIf="isEdit">Edit</button>
+      <button type="button" class="btn-remove" *ngIf="isEdit">X</button>
+    </div>
+    <div class="action-buttons" *ngIf="isNew">
+      <button type="button" class="btn-add">+</button>
+    </div>
+  </div>
 
-    <app-ingredients-list [ingredients]="direction.ingrediantsUsed" [isEditMode]="isEdit" [recipeId]="direction.recipeId" directionId="direction.directionId" ></app-ingredients-list>
+  <div class="direction-content">
+    <app-ingredients-list class="ingredients" [ingredients]="direction.ingrediantsUsed" [isEditMode]="isEdit"
+      [recipeId]="direction.recipeId" directionId="direction.directionId"></app-ingredients-list>
+
+    <div class="direction-description">
+      <div class="direction-step direction-type">
+        <div *ngIf="!isEdit">
+          {{ direction.type != null? 'Type:': ''}}
+          {{direction.type}}
+        </div>
+        <div *ngIf="isEdit">
+          Type:<input type="text" [(ngModel)]="direction.type" placeholder="type">
+        </div>
+      </div>
+      <div class="direction-step direction-explain">
+        <div *ngIf="!isEdit">
+          {{ direction.step != null? 'Description:': ''}}
+          {{direction.step}}
+        </div>
+        <div *ngIf="isEdit">
+          Description:<input type="text" [(ngModel)]="direction.step" placeholder="step">
+        </div>
+      </div>
+      <div class="direction-step direction-preperationTime">
+        <div *ngIf="!isEdit">
+          {{ direction.preperationTime != null? 'Preperation time:': ''}}
+          {{direction.preperationTime}}
+        </div>
+        <div *ngIf="isEdit">
+          <!-- Preperation time: <app-time-picker [(Time)]="direction.preperationTime"></app-time-picker> -->
+        </div>
+
+      </div>
+    </div>
 
   </div>
 
 
-
-  <div class="direction"  *ngIf="isNew" >
-    <button type="button" class="btn-add">+</button> <br>
-    <input type="text" [(ngModel)]="direction.step" placeholder="step"><br>
-    <input type="text" [(ngModel)]="direction.preperationTime.hours" placeholder="hours">:
-    <input type="text" [(ngModel)]="direction.preperationTime.minutes" placeholder="minutes">:
-    <input type="text" [(ngModel)]="direction.preperationTime.seconds" placeholder="seconds">
-
-    <app-ingredients-list [(ingredients)]="direction.ingrediantsUsed" [isEditMode]="true" [recipeId]="direction.recipeId" directionId="direction.directionId" ></app-ingredients-list>
-
-  </div>
+</div>

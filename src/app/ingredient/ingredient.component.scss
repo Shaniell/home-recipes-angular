@@ -1,15 +1,16 @@
-.ingedient {
+.ingredient {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 3px;
-
+    align-items: baseline;
   }
   
-  .ingedient-edit {
+  .ingredient-edit {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     margin: 3px;
   
     & * {

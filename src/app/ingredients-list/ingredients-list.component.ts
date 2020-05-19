@@ -15,12 +15,6 @@ export class IngredientsListComponent implements OnInit {
   @Input()
   isEditMode : Boolean = true;
 
-  @Input()
-  recipeId:string;
-
-  @Input()
-  directionId: string;
-
   constructor(private ingredientsService: IngredientService) { }
 
   ngOnInit(): void {

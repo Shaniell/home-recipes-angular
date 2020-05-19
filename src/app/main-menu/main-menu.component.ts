@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCookieBite } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-main-menu',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-menu.component.scss']
 })
 export class MainMenuComponent implements OnInit {
-
+  faCookieBite = faCookieBite;
   constructor() { }
 
   ngOnInit(): void {

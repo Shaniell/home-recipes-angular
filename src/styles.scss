@@ -34,8 +34,25 @@ body{
 
 .btn-add{
     box-shadow: 0px 0px 0px transparent;
-    border: 0px solid transparent;
-    text-shadow: 0px 0px 0px transparent;
-    height:40px;
-    width:40px;
+    border: 0px;
+    height: 30px;
+    width: 30px;
+    background-color: #dddddd00;
+    color: green;
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 5px;
+    margin: 2px 10px;
+}
+.btn-edit{
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px;
+    height: 30px;
+    width: 30px;
+    background-color: #dddddd00;
+    color: midnightblue;
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 5px;
+    margin: 2px 10px;
 }

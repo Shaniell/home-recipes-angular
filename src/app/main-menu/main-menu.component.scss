@@ -22,6 +22,8 @@ nav a{
 
     &.logo{
         margin: 60px;
+        padding:5px 8px;
+        font-size: 35px;
         background-color: #7bceac;
 
         &:hover{
@@ -31,5 +33,56 @@ nav a{
 
     &:hover{
         background-color: #7bceac;
+    }
+}
+
+
+@media screen and (max-width: 700px){
+    nav a{
+        font-size: 20px;
+    }
+
+    .nav-btn{
+        padding:5px 8px;
+        background-color: #97d8bd;
+        transition: all 0.3s ease;
+    
+        &.logo{
+            margin: 35px;
+            background-color: #7bceac;
+    
+            &:hover{
+                background-color: #67be9a;
+            }
+        }
+    
+        &:hover{
+            background-color: #7bceac;
+        }
+    }
+}
+
+@media screen and (max-width: 410px){
+    nav a{
+        font-size: 15px;
+    }
+
+    .nav-btn{
+        padding:8px 8px;
+        background-color: #97d8bd;
+        transition: all 0.3s ease;
+    
+        &.logo{
+            margin: 15px;
+            background-color: #7bceac;
+    
+            &:hover{
+                background-color: #67be9a;
+            }
+        }
+    
+        &:hover{
+            background-color: #7bceac;
+        }
     }
 }

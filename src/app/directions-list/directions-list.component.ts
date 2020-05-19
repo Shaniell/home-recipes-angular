@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Direction } from '../models/direction';
 import { Ingredient } from '../models/ingredient';
 import { TimeDuration } from '../helpers/TimeDuration';
+import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'app-directions-list',
@@ -22,9 +23,27 @@ export class DirectionsListComponent implements OnInit {
   @Input()
   isEdit: Boolean = true;
  
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
+
+  }
+
+  
+  add(direction: Direction){
+    this.recipeService.updateRecipeDirections(this.recipeId, direction).then((data: Direction[]) =>{
+      this.directions = data;
+    });
+  }
+  delete(direction: Direction){
+    this.recipeService.deleteRecipeDirections(this.recipeId, direction).then((data: Direction[]) =>{
+      this.directions = data;
+    });
+  }
+  save(direction: Direction){
+    this.recipeService.updateRecipeDirections(this.recipeId, direction).then((data: Direction[]) =>{
+      this.directions = data;
+    });
   }
 
 }

@@ -3,7 +3,8 @@
                     [isEdit]="isEditMode" 
                     [isNew]="false" 
                     [ingredient]="ingredient" 
-                    (removeIngredient)="removeIngedient(ingredient)"></app-ingredient>
+                    (removeIngredient)="removeIngedient(ingredient)"
+                    ></app-ingredient>
 
     <app-ingredient *ngIf="isEditMode" [isEdit]="isEditMode" 
                     [isNew]="true"  

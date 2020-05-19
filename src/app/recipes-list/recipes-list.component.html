@@ -8,8 +8,5 @@
 </div>
 
 <div [ngClass]="isVisible ? 'recipes-list' : 'recipes-list hidden'">
-    <div><a href="#">pasta</a></div>
-    <div><a href="#">shakshuka</a></div>
-    <div><a href="#">cookies</a></div>
-    <div><a href="#">sushi</a></div>
+    <div *ngFor="let recipe of recipeList" ><a href="#">{{recipe.recipeName}}</a></div>
 </div>

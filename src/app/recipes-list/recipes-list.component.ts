@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { RecipeService } from '../services/recipe.service';
+import { Recipe } from '../models/recipe';
+
 
 @Component({
   selector: 'app-recipes-list',
@@ -10,10 +13,14 @@ export class RecipesListComponent implements OnInit {
 
   isVisible: Boolean = true;
   faChevronDown = faChevronDown;
+  recipeList: Recipe[] = [];
 
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
+    this.recipeService.getAllRecipes().then(data=>{
+      this.recipeList = data;
+    })
   }
 
   showList(){

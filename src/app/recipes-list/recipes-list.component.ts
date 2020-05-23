@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { faChevronDown, faFileMedical,faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recipe';
+
 
 
 @Component({
@@ -13,7 +14,15 @@ export class RecipesListComponent implements OnInit {
 
   isVisible: Boolean = true;
   faChevronDown = faChevronDown;
+  faChevronUp = faChevronUp;
+  faFileMedical = faFileMedical;
   recipeList: Recipe[] = [];
+
+  newRecipePopup:Boolean = false;
+  searchText;
+
+  @Output()
+  isEditMode: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
   constructor(private recipeService: RecipeService) { }
 
@@ -30,4 +39,14 @@ export class RecipesListComponent implements OnInit {
     this.isVisible = !this.isVisible;
   }
 
+
+  SelectRecipe(recipeId: string){
+    this.recipeService.selectRecipe(recipeId);
+  }
+
+  newRecipe(recipeName){
+    this.recipeService.newRecipe(recipeName);
+    this.newRecipePopup = false;
+    this.isEditMode.emit(true);
+  }
 }

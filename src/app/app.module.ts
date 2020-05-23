@@ -15,6 +15,7 @@ import { DirectionsListComponent } from './directions-list/directions-list.compo
 import { DirectionComponent } from './direction/direction.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TimePickerComponent } from './utils/time-picker/time-picker.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TimePickerComponent } from './utils/time-picker/time-picker.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

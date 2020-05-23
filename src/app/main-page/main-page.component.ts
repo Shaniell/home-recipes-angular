@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  isEditMode:boolean=false;
 
+  constructor() { }
   ngOnInit(): void {
+  }
+
+  setEditMode(isEdit){
+    this.isEditMode=isEdit;
   }
 
 }

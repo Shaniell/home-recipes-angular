@@ -1,7 +1,7 @@
 <div class="main-page">
     <app-main-menu></app-main-menu>
     <div class="content-section">
-        <app-recipes-list class="recipes-list" ></app-recipes-list>
-        <app-recipe class="recipe"></app-recipe>
+        <app-recipes-list class="recipes-list" (isEditMode)="setEditMode($event)"></app-recipes-list>
+        <app-recipe class="recipe" [isEdit]="isEditMode"></app-recipe>
     </div>
 </div>

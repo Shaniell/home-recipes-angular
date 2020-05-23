@@ -42,18 +42,16 @@ export class DirectionComponent implements OnInit {
   }
 
   addDirection(){
-    console.log(this.direction);
-    this.add.emit(this.direction);
+    this.add.emit(Object.create(this.direction));
+    this.direction = new Direction();
   }
 
   deleteDirection(){
-    console.log(this.direction);
-    this.delete.emit(this.direction);
+    this.delete.emit(Object.create(this.direction));
   }
 
   saveDirection(){
-    console.log(this.direction);
-    this.save.emit(this.direction);
+    this.save.emit(Object.create(this.direction));
   }
 
 }

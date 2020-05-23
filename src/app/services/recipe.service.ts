@@ -4,11 +4,16 @@ import { Recipe } from '../models/recipe';
 import { Direction } from '../models/direction';
 import { Ingredient } from '../models/ingredient';
 import { TimeDuration } from '../helpers/TimeDuration';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
+
+  public recipeSelectedEvent: Subject<string> = new Subject<string>();
+  private selectedRecipeId= "";
+
 
   private recipes: Recipe[] = [
     new Recipe("1",
@@ -58,6 +63,15 @@ export class RecipeService {
 
   constructor(private http: HttpClient) { }
 
+  selectRecipe(recipeId: string){
+    this.selectedRecipeId = recipeId;
+    this.recipeSelectedEvent.next(recipeId);
+  }
+
+  recipeIdObservable(){
+    return this.recipeSelectedEvent.asObservable();
+  }
+
   getRecipe(recipeId: string): Promise<Recipe> {
     return new Promise((res, rej) => {
       res(this.recipes.filter(x => x.id == recipeId)[0]);
@@ -74,27 +88,39 @@ export class RecipeService {
     return new Promise((res, rej) => {
       let index = this.recipes.findIndex(x => x.id == recipe.id)[0]
       this.recipes[index] = recipe;
+      
       res(this.recipes[index]);
     });
   }
 
-  addRecipe(recipe: Recipe): Promise<Boolean> {
+  deleteRecipe(recipeId): Promise<Recipe[]> {
     return new Promise((res, rej) => {
-      recipe.id = new Date().toString();
-      this.recipes.push(recipe);
-      res(true);
+      let index = this.recipes.findIndex(x => x.id == recipeId)[0]
+      this.recipes.splice(index, 1);
+      
+      res(this.recipes);
     });
   }
 
-  updateRecipeDirections(recipeId: string, direction: Direction) {
-    return new Promise((res, rej) => {
-      let index = this.recipes.findIndex(x => x.id == recipeId)[0]
+  newRecipe(name) {
+    let newRecipeId = new Date().toString();
+    this.recipes.push(new Recipe(newRecipeId, name));
 
+    this.selectRecipe(newRecipeId);
+  }
+
+  updateRecipeDirections(recipeId: string, direction: Direction) {
+    //var currentDir = Object.create(direction);
+    console.log(direction);
+    return new Promise((res, rej) => {
+      var index = this.recipes.findIndex(x => x.id == recipeId)
       if (direction.id != "") {
         let i = this.recipes[index].directions.findIndex(x => x.id == direction.id);
         this.recipes[index].directions[i] = direction;
       }
       else {
+        direction.id = new Date().toString();
+        
         this.recipes[index].directions.push(direction);
       }
       res(this.recipes[index].directions);
@@ -102,10 +128,11 @@ export class RecipeService {
   }
 
   deleteRecipeDirections(recipeId: string, direction: Direction) {
+    //var currentDir = Object.create(direction);
     return new Promise((res, rej) => {
-      let index = this.recipes.findIndex(x => x.id == recipeId)[0]
+      var index = this.recipes.findIndex(x => x.id == recipeId)
 
-      let i = this.recipes[index].directions.findIndex(x => x.id == direction.id);
+      var i = this.recipes[index].directions.findIndex(x => x.id == direction.id);
       this.recipes[index].directions.splice(i, 1);
       
       res(this.recipes[index].directions);
@@ -114,20 +141,24 @@ export class RecipeService {
 
   getRecipeIngredients(recipeId: string): Promise<Ingredient[]> {
     return new Promise((res, rej) => {
-      let recipe = this.recipes.filter(x => x.id == recipeId)[0];
-      let ingredients:any = {};
-      recipe.directions.forEach(x => {
-        x.ingrediantsUsed.forEach(y => {
+      var localRecipes = Object.create(this.recipes);
+      var recipe = localRecipes.filter(x => x.id == recipeId)[0];
+      var directions = Object.create(recipe.directions);
+      var ingredients:any = {};
+      directions.forEach(x => {
+        var  ing = x.ingrediantsUsed.map(a=> Object.create(a));
+        ing.forEach(y => {
           if (ingredients[y.ingredientName] == null) {
             ingredients[y.ingredientName] = y;
           }
           else {
-            ingredients[y.ingredientName].amount = y.amount;
+            ingredients[y.ingredientName].amount += y.amount;
           }
         })
       })
 
       var result = [];
+
       Object.keys(ingredients).forEach(x => result.push(ingredients[x]));
 
 

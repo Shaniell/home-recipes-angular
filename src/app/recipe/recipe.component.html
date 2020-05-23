@@ -1,10 +1,20 @@
-<div class="recipe">
+
+
+
+<div class="recipe" *ngIf="RecipeId != ''">
+
+    <div style="display: flex; justify-content: flex-end;">
+        <button (click)="isEdit=!isEdit;">{{!isEdit?'Edit':'Stop Edit'}}</button>
+        <button (click)="deleteRecipe()">delete</button>
+        
+    </div>
+
     <h1>{{ recipe.recipeName }}</h1>
 
     <h3>Ingredients</h3>
     <app-ingredients-list [ingredients]="ingredients" [isEditMode]="false"></app-ingredients-list>
 
     <h3>Directions</h3>
-    <app-directions-list [directions]="recipe.directions" [isEdit]="isEdit" [recipeId]="recipe.id"  ></app-directions-list>
+    <app-directions-list [directions]="recipe.directions" [isEdit]="isEdit" [recipeId]="recipe.id" (AddedDirection)="updateIngredientsList()"  ></app-directions-list>
 
 </div>

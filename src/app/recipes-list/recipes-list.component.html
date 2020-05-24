@@ -1,5 +1,5 @@
 
-<div class="search-bar">
+<div class="search-bar" *ngIf="isShowHeader">
     <h3>Recipes</h3>
     <input type="text" class="search-input" placeholder="search recipe" (click)="showList()" [(ngModel)]="searchText"/>
     <div>

@@ -16,6 +16,7 @@ import { DirectionComponent } from './direction/direction.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TimePickerComponent } from './utils/time-picker/time-picker.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { IngredientsSearchPageComponent } from './ingredients-search-page/ingredients-search-page.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     IngredientComponent,
     DirectionsListComponent,
     DirectionComponent,
-    TimePickerComponent
+    TimePickerComponent,
+    IngredientsSearchPageComponent
   ],
   imports: [
     BrowserModule,

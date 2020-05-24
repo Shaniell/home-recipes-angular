@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, Input } from '@angular/core';
 import { faChevronDown, faFileMedical,faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recipe';
@@ -20,6 +20,9 @@ export class RecipesListComponent implements OnInit {
 
   newRecipePopup:Boolean = false;
   searchText;
+
+  @Input()
+  isShowHeader: Boolean = true;
 
   @Output()
   isEditMode: EventEmitter<Boolean> = new EventEmitter<Boolean>();

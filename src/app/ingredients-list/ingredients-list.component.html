@@ -8,5 +8,5 @@
 
     <app-ingredient *ngIf="isEditMode" [isEdit]="isEditMode" 
                     [isNew]="true"  
-                    (addIngredient)="addIngredient($event)"></app-ingredient>
+                    (addIngredient)="addIngredient($event)" [isNameOnly]="isNameOnly"></app-ingredient>
 </div>

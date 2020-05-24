@@ -17,6 +17,9 @@ export class IngredientComponent implements OnInit {
   @Input()
   ingredient:Ingredient = new Ingredient();
 
+  @Input()
+  isNameOnly:boolean = false;
+
   @Output()
   addIngredient: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
 

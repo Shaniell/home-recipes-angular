@@ -6,10 +6,10 @@
       <div>{{ingredient.measurementType}}</div>
     </div>
 
-    <div class="ingredient-edit" *ngIf="isNew">
+    <div class="ingredient-edit" *ngIf="isNew" [style.flex-direction]="isNameOnly? 'row': 'column'">
       <button type="button" class="btn-add" (click)="add()">+</button>
       <input type="text" placeholder="Ingredient name" [(ngModel)]="ingredient.ingredientName" />
-      <input type="text" placeholder="Amount" [(ngModel)]="ingredient.amount" />
-      <input type="text" placeholder="Measurement type" [(ngModel)]="ingredient.measurementType" />
+      <input type="text" placeholder="Amount" [(ngModel)]="ingredient.amount" *ngIf="!isNameOnly" />
+      <input type="text" placeholder="Measurement type" [(ngModel)]="ingredient.measurementType" *ngIf="!isNameOnly" />
     </div>
   </div>

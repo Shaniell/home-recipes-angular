@@ -86,7 +86,7 @@ export class RecipeService {
 
   updateRecipe(recipe: Recipe): Promise<Recipe> {
     return new Promise((res, rej) => {
-      let index = this.recipes.findIndex(x => x.id == recipe.id)[0]
+      let index = this.recipes.findIndex(x => x.id == recipe.id)
       this.recipes[index] = recipe;
       
       res(this.recipes[index]);
@@ -95,7 +95,7 @@ export class RecipeService {
 
   deleteRecipe(recipeId): Promise<Recipe[]> {
     return new Promise((res, rej) => {
-      let index = this.recipes.findIndex(x => x.id == recipeId)[0]
+      let index = this.recipes.findIndex(x => x.id == recipeId)
       this.recipes.splice(index, 1);
       
       res(this.recipes);
@@ -158,10 +158,13 @@ export class RecipeService {
       })
 
       var result = [];
-
+      
+      
       Object.keys(ingredients).forEach(x => result.push(ingredients[x]));
-
-
+      
+      let index = this.recipes.findIndex(x => x.id == recipeId);
+      this.recipes[index].ingredients = result;
+      
       res(result);
     });
   }

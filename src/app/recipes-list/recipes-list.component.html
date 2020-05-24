@@ -17,7 +17,7 @@
         <div class="form__group">
             <input type="text" #newRecipeText class="form__input" id="name" placeholder="New Recipe Name" required="" />
             <label for="name" class="form__label">New Recipe Name</label>
-          </div><button type="button" (click)="newRecipe(newRecipeText.value)">add</button><button type="button" (click)="newRecipePopup = false;">cancel</button>
+          </div><button type="button" (click)="newRecipe(newRecipeText.value);newRecipeText.value='';">add</button><button type="button" (click)="newRecipePopup = false; newRecipeText.value='';">cancel</button>
     </div>
 </div>
 <div [ngClass]="isVisible ? 'recipes-list' : 'recipes-list hidden'">

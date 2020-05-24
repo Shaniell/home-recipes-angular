@@ -33,10 +33,8 @@ export class RecipeComponent implements OnInit {
       this.recipeService.getRecipe(this.RecipeId).then(data => {
         this.recipe = data;
 
+        this.updateIngredientsList();
 
-        this.recipeService.getRecipeIngredients(this.RecipeId).then(ing => {
-          this.ingredients = ing;
-        });
       })
     }
 
@@ -49,17 +47,17 @@ export class RecipeComponent implements OnInit {
           this.recipe = data;
 
 
-          this.recipeService.getRecipeIngredients(this.RecipeId).then(ing => {
-            this.ingredients = ing;
-          });
+          this.updateIngredientsList();
         })
       }
     })
   }
 
   updateIngredientsList(){
-    this.recipeService.getRecipeIngredients(this.RecipeId).then(ing => {
+    this.recipeService.updateRecipeIngredients(this.RecipeId).then(datas=>{
+      this.recipeService.getRecipeIngredients(this.RecipeId).then(ing => {
       this.ingredients = ing;
+      });
     });
   }
 

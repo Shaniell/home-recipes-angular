@@ -19,7 +19,7 @@ export class RecipeService {
     new Recipe("1",
       "Cookies",
       "https://nitrocdn.com/pYazsaHOTWIueLckVEtXQdYLdaoHaWlC/assets/static/optimized/wp-content/uploads/2016/01/1a437be9d7e1246fc31c5da740a497a2.best-chocolate-chip-cookies-recipe-ever-no-chilling-1-e1549147195343.jpg",
-      [],
+      [new Ingredient("tomato", 1, "unit"), new Ingredient("cucumber", 1, "unit")],
       [new Direction("1", "1", "juleans", "cut", [new Ingredient("tomato", 1, "unit"), new Ingredient("cucumber", 1, "unit")], null),
       new Direction("2", "1", "", "cook", [new Ingredient("tomato", 1, "unit")], new TimeDuration(20, 50, 3))]
     ),
@@ -139,10 +139,9 @@ export class RecipeService {
     });
   }
 
-  getRecipeIngredients(recipeId: string): Promise<Ingredient[]> {
+  updateRecipeIngredients(recipeId: string): Promise<Ingredient[]> {
     return new Promise((res, rej) => {
-      var localRecipes = Object.create(this.recipes);
-      var recipe = localRecipes.filter(x => x.id == recipeId)[0];
+      var recipe = this.recipes.filter(x => x.id == recipeId)[0];
       var directions = Object.create(recipe.directions);
       var ingredients:any = {};
       directions.forEach(x => {
@@ -152,20 +151,25 @@ export class RecipeService {
             ingredients[y.ingredientName] = y;
           }
           else {
-            ingredients[y.ingredientName].amount += y.amount;
+            ingredients[y.ingredientName].amount += Number(y.amount);
           }
         })
       })
 
-      var result = [];
+          
       
+      let i = this.recipes.findIndex(x => x.id == recipeId);
+      this.recipes[i].ingredients = [];
+      Object.keys(ingredients).forEach(x => this.recipes[i].ingredients.push(ingredients[x]));
       
-      Object.keys(ingredients).forEach(x => result.push(ingredients[x]));
-      
+      res(this.recipes[i].ingredients);
+    });
+  }
+
+  getRecipeIngredients(recipeId: string) : Promise<Ingredient[]>{
+    return new Promise((res, rej) => {
       let index = this.recipes.findIndex(x => x.id == recipeId);
-      this.recipes[index].ingredients = result;
-      
-      res(result);
+      res(this.recipes[index].ingredients);
     });
   }
 }

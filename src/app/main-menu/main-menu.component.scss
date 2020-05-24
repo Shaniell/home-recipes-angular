@@ -1,44 +1,53 @@
-.menu{
+nav {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    height: 60px;
+    height: 90px;
     background: #00d47c47;
-}
 
-nav a{
-    font-size: 20px;
-    text-decoration: none;
-    color: white;
-    border-radius: 7px;
-    margin: 0 5px;
-}
-
-.nav-btn{
-    padding:10px 15px;
-    background-color: #97d8bd;
-    transition: all 0.3s ease;
-
-    &.logo{
-        margin: 60px;
-        padding:5px 8px;
-        font-size: 35px;
-        background-color: #7bceac;
-
-        &:hover{
-            background-color: #67be9a;
-        }
+    a {
+        font-size: 20px;
+        text-decoration: none;
+        color: #848887;
+        border-radius: 25px;
+        margin: 0 12px;
+        font-weight: bold;
+        border-bottom: 4px solid #679884;
+        border-top: 1px solid #ffffff;
     }
 
-    &:hover{
-        background-color: #7bceac;
+    .nav-btn {
+        padding:10px 15px;
+        background-color: #ddfbef;
+        transition: all 0.3s ease;
+
+        &.logo {
+            margin: 0px 15px 0 60px;
+            padding: 5px 8px;
+            font-size: 35px;
+            background-color: #7bceac;
+            color: #ddfbef;
+
+            &:hover {
+                background-color: #85deb9;
+                color: #fafffd;
+            }
+        }
+
+        &:hover {
+            background-color: #f2fffa;
+        }
+
+        &:active {
+            border-bottom-width: 2px;
+        }
     }
 }
 
 
 @media screen and (max-width: 700px){
-    nav a{
+    nav a {
         font-size: 20px;
     }
 
@@ -47,11 +56,11 @@ nav a{
         background-color: #97d8bd;
         transition: all 0.3s ease;
     
-        &.logo{
+        &.logo {
             margin: 35px;
             background-color: #7bceac;
     
-            &:hover{
+            &:hover {
                 background-color: #67be9a;
             }
         }

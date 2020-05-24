@@ -61,7 +61,8 @@
 
 h3 {
     color: #00966c;
-    font-size: 25px;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .recipes-list {
@@ -94,13 +95,12 @@ h3 {
         align-items: center;
         flex-grow: 1;
         margin: 15px 15px 0 0;
-        background: #ffeb3bbd; //#d3cebe
-        background: #ffeb3bbd;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #e7d31da1, #ffeb3bbd);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #e7d31da1, #ffeb3bbd); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-box-shadow: 0px 10px 15px 1px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
+        background: #ffce46;
+        /* background: #ffeb3bbd; */
+        /* background: linear-gradient(to left, #e7d31da1, #ffeb3bbd); */
+        border-radius: 25px;
         transition: all 0.3s linear;
+        border-bottom: 2px solid #fff9e8;
 
         &:last-child {
             margin: 15px 0 15px 0;
@@ -108,10 +108,20 @@ box-shadow: 0px 10px 15px 1px rgba(0, 0, 0, 0.1);
 
         a {
             text-decoration: none;
-            color: #8f8f8f;
-            font-size: 30px;
+            color: #fffdf5;
+            font-size: 22px;
             font-weight: bold;
             text-transform: uppercase;
+            text-shadow: 3px 2px #ffbe46 !important;
+            transition: all 0.5s cubic-bezier(.64,1.58,.69,1.59);
+        }
+
+        &:hover {
+            background: #ffbb00;
+
+            a {
+                transform: scale(1.2);
+            }
         }
     }
 }

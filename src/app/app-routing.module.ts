@@ -7,6 +7,7 @@ import { IngredientsSearchPageComponent } from './ingredients-search-page/ingred
 const routes: Routes = [
   { path:'', component: MainPageComponent },
   { path:'MainPage', component: MainPageComponent },
+  { path:'MainPage/:id', component: MainPageComponent },
   { path:'IngredientsSearchPage', component: IngredientsSearchPageComponent }
 ];
 

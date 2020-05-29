@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recipe';
 import { Ingredient } from '../models/ingredient';
-import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsDown, faTimes, faPen, faTrash} from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -26,6 +26,10 @@ export class RecipeComponent implements OnInit {
   isNew: Boolean = false;
 
   recId: string = "";
+  faTimes=faTimes;
+  faPen=faPen;
+  faTrash=faTrash;
+
 
   constructor(private recipeService: RecipeService,private route: ActivatedRoute) { }
 

@@ -1,8 +1,7 @@
 .direction {
-    flex: 1;
+    flex-grow: 1;
     background: #efefef;
     border-radius: 12px;
-    max-width: 800px;
     margin: 0 0 10px 0;
     padding: 15px 45px 25px 45px;
 }
@@ -27,6 +26,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     margin: 0 20px;
+    line-height: 2;
 }
 
 .ingredients {

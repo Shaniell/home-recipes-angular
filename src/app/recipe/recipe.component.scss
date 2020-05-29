@@ -1,7 +1,7 @@
-.recipe{
+.recipe {
     display: flex;
     flex-direction: column;
-    background: #fbfbfb;
+    background: #fff;
     padding: 40px 100px 70px 100px;
     border-radius: 7px;
 
@@ -10,14 +10,11 @@
         text-shadow: 3px 0px;
         font-size: 50px;
         -webkit-text-stroke: 1px #000000;
-
-        // color: #ffe486;
-    // 
     }
 }
 
 @media screen and (max-width:700px){
-    .recipe{
+    .recipe {
         padding: 10px;
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Ingredient } from '../models/ingredient';
 import { IngredientService } from '../services/ingredient.service';
 
@@ -7,7 +7,7 @@ import { IngredientService } from '../services/ingredient.service';
   templateUrl: './ingredients-list.component.html',
   styleUrls: ['./ingredients-list.component.scss']
 })
-export class IngredientsListComponent implements OnInit {
+export class IngredientsListComponent implements OnInit{
 
   @Input()
   ingredients : Ingredient[] = [];
@@ -18,7 +18,12 @@ export class IngredientsListComponent implements OnInit {
   @Input()
   isNameOnly:Boolean = false;
 
+  @Output()
+  DataChanged:EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
+
   constructor(private ingredientsService: IngredientService) { }
+  
+  
 
   ngOnInit(): void {
     // this.ingredientsService.GetIngredients(this.recipeId, this.directionId).then(data=>{
@@ -29,6 +34,7 @@ export class IngredientsListComponent implements OnInit {
   addIngredient(ing : Ingredient): void {
     // this.ingredientsService.AddIngredient(this.recipeId, this.directionId, ing).then(data=>{
       this.ingredients.push(ing);
+      this.DataChanged.emit(this.ingredients);
     // })
   }
 
@@ -36,6 +42,7 @@ export class IngredientsListComponent implements OnInit {
     // this.ingredientsService.RemoveIngredient(this.recipeId, this.directionId, ing).then(data=>{
       let index = this.ingredients.findIndex(x=> x.ingredientName == ing.ingredientName);
       this.ingredients.splice(index, 1);
+      this.DataChanged.emit(this.ingredients);
     // })
   }
 

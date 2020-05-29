@@ -1,7 +1,8 @@
-import { Component, OnInit, Output,EventEmitter, Input } from '@angular/core';
-import { faChevronDown, faFileMedical,faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { faChevronDown, faFileMedical, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recipe';
+import { Router } from '@angular/router';
 
 
 
@@ -16,9 +17,11 @@ export class RecipesListComponent implements OnInit {
   faChevronDown = faChevronDown;
   faChevronUp = faChevronUp;
   faFileMedical = faFileMedical;
+
+  @Input()
   recipeList: Recipe[] = [];
 
-  newRecipePopup:Boolean = false;
+  newRecipePopup: Boolean = false;
   searchText;
 
   @Input()
@@ -27,27 +30,30 @@ export class RecipesListComponent implements OnInit {
   @Output()
   isEditMode: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService, private route: Router) { }
 
   ngOnInit(): void {
-    this.recipeService.getAllRecipes().then(data=>{
-      this.recipeList = data;
-    })
+    //if (this.recipeList == []) {
+      this.recipeService.getAllRecipes().then(data => {
+        this.recipeList = data;
+      });
+    //}
   }
 
-  showList(){
+  showList() {
     this.isVisible = true;
   }
-  changeListVisibility(){
+  changeListVisibility() {
     this.isVisible = !this.isVisible;
   }
 
 
-  SelectRecipe(recipeId: string){
+  SelectRecipe(recipeId: string) {
     this.recipeService.selectRecipe(recipeId);
+    this.route.navigate(['/MainPage', recipeId])
   }
 
-  newRecipe(recipeName){
+  newRecipe(recipeName) {
     this.recipeService.newRecipe(recipeName);
     this.newRecipePopup = false;
     this.isEditMode.emit(true);

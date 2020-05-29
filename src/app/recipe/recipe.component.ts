@@ -3,6 +3,7 @@ import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recipe';
 import { Ingredient } from '../models/ingredient';
 import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,9 @@ export class RecipeComponent implements OnInit {
 
   isNew: Boolean = false;
 
-  constructor(private recipeService: RecipeService) { }
+  recId: string = "";
+
+  constructor(private recipeService: RecipeService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -51,6 +54,12 @@ export class RecipeComponent implements OnInit {
         })
       }
     })
+
+    this.route.params.subscribe(params => {
+      if (Object.keys(params).length != 0){
+        this.recipeService.selectRecipe(params['id']);
+      }
+   });
   }
 
   updateIngredientsList(){

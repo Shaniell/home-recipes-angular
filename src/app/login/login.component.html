@@ -1,0 +1,11 @@
+<div class="login">
+    <div class="head">
+            <app-logo-icon></app-logo-icon>
+        <h2>Home Recipes</h2>
+    </div>
+    
+    <input type="text" #user placeholder="Username">
+    <input type="password" #pass placeholder="Password">
+    <button (click)="login(user.value, pass.value)">Let's Cook!</button>
+    <button class="signup">Sign Up</button>
+</div>

@@ -26,6 +26,7 @@ import { ArrowIconComponent } from './icons/arrow-icon/arrow-icon.component';
 import { StopEditIconComponent } from './icons/stop-edit-icon/stop-edit-icon.component';
 import { RemoveIconComponent } from './icons/remove-icon/remove-icon.component';
 import { AddIconComponent } from './icons/add-icon/add-icon.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AddIconComponent } from './icons/add-icon/add-icon.component';
     ArrowIconComponent,
     StopEditIconComponent,
     RemoveIconComponent,
-    AddIconComponent
+    AddIconComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

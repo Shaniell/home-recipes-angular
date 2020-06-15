@@ -1,0 +1,52 @@
+.login{
+    background-color: #00d47c47;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        width: 50%;
+    
+      }
+
+      Button {
+        width: 50%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      Button.signup{
+        background-color: rgb(26, 67, 179);
+        width: 100px;
+        align-self: flex-start;
+        margin-left: 25%;
+      }
+      
+      Button:hover {
+        background-color: #45a049;
+      }
+
+      Button.signup:hover{
+        background-color: rgb(21, 57, 153);
+      }
+}
+
+h2{
+    font-family: 'Pacifico', 'Regular' 
+}

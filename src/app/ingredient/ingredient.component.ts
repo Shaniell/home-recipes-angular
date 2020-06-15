@@ -26,9 +26,12 @@ export class IngredientComponent implements OnInit {
   @Output()
   removeIngredient: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
 
+  displayStr: string;
+  
   constructor() { }
 
   ngOnInit(): void {
+    this.displayStr = `${this.ingredient.amount} ${this.ingredient.measurementType === 'unit' ? '' : this.ingredient.measurementType} ${this.ingredient.ingredientName}`;
   }
 
   add(){

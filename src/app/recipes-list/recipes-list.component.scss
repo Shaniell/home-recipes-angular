@@ -90,6 +90,7 @@ h3 {
 
     div {
         height: 120px;
+        flex-basis: 100px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -148,7 +149,7 @@ h3 {
             }
 
             a {
-                font-size: 20px;
+                font-size: 16px;
             }
         }
     }

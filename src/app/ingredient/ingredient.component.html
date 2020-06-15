@@ -1,9 +1,7 @@
 <div>
     <div class="ingredient" *ngIf="!isNew">
       <button class="btn-remove" *ngIf="isEdit" (click)="remove()" >X</button>
-      <div>{{ingredient.ingredientName}}</div>
-      <div>{{ingredient.amount}}</div>
-      <div>{{ingredient.measurementType}}</div>
+      <div>{{displayStr}}</div>
     </div>
 
     <div class="ingredient-edit" *ngIf="isNew" [style.flex-direction]="isNameOnly? 'row': 'column'">

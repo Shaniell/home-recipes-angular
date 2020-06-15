@@ -35,6 +35,9 @@
 } 
 .direction-description {
     flex: 3;
+    padding: 0 0 0 30px;
+    border-left: 2px solid #d0d0d0;
+    margin: 0 0 0 10px;
 }
 
 .title {
@@ -52,4 +55,16 @@
 }
 
 .direction-preperationTime {
+}
+
+@media screen and (max-width: 700px) {
+    .direction {
+        padding: 10px 10px 15px;
+    }
+
+    .direction-description {
+        padding: 0 0 0 15px;
+        border-left: 2px solid #d0d0d0;
+        margin: 0 0 0 10px;
+    }
 }

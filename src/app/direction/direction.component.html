@@ -6,11 +6,18 @@
       {{isNew ? 'New' : ''}} step {{isNew ? '' : index}}
     </div>
     <div class="action-buttons" *ngIf="!isNew">
-      <button type="button" class="btn-edit" *ngIf="isEdit" (click)="saveDirection()"><fa-icon [icon]="faSave"></fa-icon></button>
-      <button type="button" class="btn-remove" *ngIf="isEdit" (click)="deleteDirection()">X</button>
+      <button type="button" class="btn-edit" *ngIf="isEdit" (click)="saveDirection()">
+        <!-- <fa-icon [icon]="faSave"></fa-icon> -->
+        <app-save-icon></app-save-icon>
+      </button>
+      <button type="button" class="btn-remove" *ngIf="isEdit" (click)="deleteDirection()">
+        <app-remove-icon></app-remove-icon>
+      </button>
     </div>
     <div class="action-buttons" *ngIf="isNew">
-      <button type="button" class="btn-add" (click)="addDirection()">+</button>
+      <button type="button" class="btn-add" (click)="addDirection()">
+        <app-add-icon></app-add-icon>
+      </button>
     </div>
   </div>
 

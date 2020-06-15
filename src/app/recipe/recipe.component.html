@@ -1,7 +1,14 @@
 <div class="recipe" *ngIf="RecipeId != ''">
     <div class="actions">
-        <fa-icon class="action" [icon]="!isEdit ? faPen : faTimes" size="2x" (click)="isEdit=!isEdit"></fa-icon>
-        <fa-icon class="action" [icon]="faTrash" size="2x" (click)="deleteRecipe()"></fa-icon>
+        <!-- <fa-icon class="action" [icon]="!isEdit ? faPen : faTimes" size="2x" (click)="isEdit=!isEdit"></fa-icon>
+        <fa-icon class="action" [icon]="faTrash" size="2x" (click)="deleteRecipe()"></fa-icon> -->
+        <div style="height: 40px; width: 40px;" class="action">
+            <app-edit-icon *ngIf="!isEdit" (click)="isEdit=!isEdit"></app-edit-icon>
+            <app-stop-edit-icon *ngIf="isEdit" (click)="isEdit=!isEdit"></app-stop-edit-icon>
+        </div>
+        <div style="height: 40px; width: 40px;" class="action">
+            <app-delete-icon (click)="deleteRecipe()"></app-delete-icon>
+        </div>
     </div>
     <h1>{{ recipe.recipeName }}</h1>
     <h3>Ingredients</h3>

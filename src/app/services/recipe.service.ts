@@ -17,6 +17,8 @@ export class RecipeService {
 
   private recipes: Recipe[] = [
     new Recipe("1",
+    "1",
+    true,
       "Cookies",
       "https://nitrocdn.com/pYazsaHOTWIueLckVEtXQdYLdaoHaWlC/assets/static/optimized/wp-content/uploads/2016/01/1a437be9d7e1246fc31c5da740a497a2.best-chocolate-chip-cookies-recipe-ever-no-chilling-1-e1549147195343.jpg",
       [new Ingredient("tomato", 1, "unit"), new Ingredient("cucumber", 1, "unit")],
@@ -25,6 +27,8 @@ export class RecipeService {
     ),
 
     new Recipe("2",
+    "1",
+    true,
       "Salad",
       "https://www.cookingclassy.com/wp-content/uploads/2019/11/best-salad-7-600x900.jpg",
       [],
@@ -32,6 +36,8 @@ export class RecipeService {
       new Direction("2", "1", "", "cook", [], new TimeDuration(20, 50, 3))]
     ),
     new Recipe("3",
+    "1",
+    true,
       "Pasta",
       "https://images.immediate.co.uk/production/volatile/sites/2/2018/11/OnePotPasta-47b5b0a.jpg?webp=true&quality=90&resize=728%2C309",
       [],
@@ -39,6 +45,8 @@ export class RecipeService {
       new Direction("2", "1", "", "cook", [], new TimeDuration(20, 50, 3))]
     ),
     new Recipe("4",
+    "1",
+    true,
       "Sushi",
       "https://media-cdn.tripadvisor.com/media/photo-o/17/5b/e1/a2/dom-sushi-gdansk.jpg",
       [],
@@ -46,6 +54,8 @@ export class RecipeService {
       new Direction("2", "1", "", "cook", [], new TimeDuration(20, 50, 3))]
     ),
     new Recipe("5",
+    "1",
+    true,
       "Kurze",
       "https://media-cdn.tripadvisor.com/media/photo-o/1a/19/c9/03/this-is-kurze-with-broth.jpg",
       [],
@@ -53,6 +63,8 @@ export class RecipeService {
       new Direction("2", "1", "", "cook", [], new TimeDuration(20, 50, 3))]
     ),
     new Recipe("6",
+    "1",
+    true,
       "Burger",
       "https://www.bora.com/fileadmin/_processed_/7/c/csm_55_TeamEdition_Canada_Halloumi-Burger_142d3295df.jpg",
       [],

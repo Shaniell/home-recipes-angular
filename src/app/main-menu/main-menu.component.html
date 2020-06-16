@@ -1,5 +1,10 @@
 <nav class="menu">
-    <a [routerLink]="['/MainPage']" class="nav-btn logo"><fa-icon [icon]="faCookieBite"></fa-icon></a>
+    <a [routerLink]="['/MainPage']" class="nav-btn logo">
+        <!-- <fa-icon [icon]="faCookieBite"></fa-icon> -->
+        <div style="width: 35px; padding-top: 3px;">
+            <app-logo-icon></app-logo-icon>
+        </div>
+    </a>
     <a [routerLink]="['/MainPage']" class="nav-btn">Recipes</a>
     <a [routerLink]="['/IngredientsSearchPage']" class="nav-btn">Ingredients search</a>
 </nav>

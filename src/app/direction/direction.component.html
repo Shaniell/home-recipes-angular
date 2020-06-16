@@ -6,11 +6,14 @@
       {{isNew ? 'New' : ''}} step {{isNew ? '' : index}}
     </div>
     <div class="action-buttons" *ngIf="!isNew">
-      <button type="button" class="btn-edit" *ngIf="isEdit" (click)="saveDirection()"><fa-icon [icon]="faSave"></fa-icon></button>
-      <button type="button" class="btn-remove" *ngIf="isEdit" (click)="deleteDirection()">X</button>
+      <button type="button" class="btn-remove" *ngIf="isEdit" (click)="deleteDirection()">
+        <app-remove-icon></app-remove-icon>
+      </button>
     </div>
     <div class="action-buttons" *ngIf="isNew">
-      <button type="button" class="btn-add" (click)="addDirection()">+</button>
+      <button type="button" class="btn-add" (click)="addDirection()">
+        <app-add-icon></app-add-icon>
+      </button>
     </div>
   </div>
 
@@ -33,7 +36,9 @@
           {{direction.step}}
         </div>
         <div *ngIf="isEdit">
-          Description:<input type="text" [(ngModel)]="direction.step" placeholder="step">
+          Description:
+          <textarea name="description" [(ngModel)]="direction.step" placeholder="step"></textarea>
+          <!-- <input type="text" [(ngModel)]="direction.step" placeholder="step"> -->
         </div>
       </div>
       <div class="direction-step direction-preperationTime">

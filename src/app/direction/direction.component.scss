@@ -4,67 +4,75 @@
     border-radius: 12px;
     margin: 0 0 10px 0;
     padding: 15px 45px 25px 45px;
-}
 
-.action-buttons {
-    display: flex;
-    justify-content: flex-end;
-}
+    .direction-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 10px 20px;
+        margin: 0 0 15px 0;
+        background: #d0d0d0;
+        border-radius: 10px;
 
-.direction-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 10px 20px;
-    margin: 0 0 15px 0;
-    background: #d0d0d0;
-    border-radius: 10px;
-}
-
-.direction-content {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 0 20px;
-    line-height: 2;
-}
-
-.ingredients {
-    flex: 1;
-
-    &.edit {
-        flex-grow: 3;
+        .title {
+            text-transform: capitalize;
+            font-weight: 600;
+        }
     }
 
-} 
-.direction-description {
-    flex: 3;
-    padding: 0 0 0 30px;
-    border-left: 2px solid #d0d0d0;
-    margin: 0 0 0 10px;
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+    }
 
-    &.edit {
-        flex-grow: 2;
+    .direction-content {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin: 0 20px;
+        line-height: 2;
+    
+        .ingredients {
+            flex: 1;
+
+            &.edit {
+                flex-grow: 3;
+            }
+
+        } 
+    
+        .direction-description {
+            flex: 3;
+            padding: 0 0 0 30px;
+            border-left: 2px solid #d0d0d0;
+            margin: 0 0 0 10px;
+
+            &.edit {
+                flex-grow: 2;
+            }
+
+            textarea {
+                width: 100%;
+            }
+
+            input[type=text] {
+                margin: 0 0 0 10px;
+            }
+
+            .direction-step {
+            }
+        
+            .direction-type {
+            }
+        
+            .direction-explain {
+            }
+        
+            .direction-preperationTime {
+            }
+        }
     }
 }
-
-.title {
-    text-transform: capitalize;
-    font-weight: 600;
-}
-
-.direction-step {
-}
-
-.direction-type {
-}
-
-.direction-explain {
-}
-
-.direction-preperationTime {
-}
-
 @media screen and (max-width: 700px) {
     .direction {
         padding: 10px 10px 15px;

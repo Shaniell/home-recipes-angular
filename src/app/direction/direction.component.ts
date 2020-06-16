@@ -36,6 +36,8 @@ export class DirectionComponent implements OnInit {
 
   faSave = faSave;
 
+  isDeleted: Boolean;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -47,7 +49,8 @@ export class DirectionComponent implements OnInit {
   }
 
   deleteDirection(){
-    this.delete.emit(Object.create(this.direction));
+    // this.delete.emit(Object.create(this.direction));
+    this.isDeleted = true;
   }
 
   saveDirection(){

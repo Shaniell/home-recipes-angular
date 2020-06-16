@@ -4,11 +4,13 @@
     <input type="text" class="search-input" placeholder="search recipe" (click)="showList()" [(ngModel)]="searchText"/>
     <div>
         <button class="display-list-btn" (click)="newRecipePopup = true;">
-            <fa-icon [icon]="faFileMedical"></fa-icon>
+            <!-- <fa-icon [icon]="faFileMedical"></fa-icon> -->
+            <app-new-recipe-icon></app-new-recipe-icon>
         </button>
     <button [ngClass]="isVisible ? 'display-list-btn ' : 'display-list-btn closed'" 
             (click)="changeListVisibility()">
-        <fa-icon [icon]="faChevronUp" [ngClass]="isVisible ? 'icon-display' : 'icon-closed'"></fa-icon>
+        <!-- <fa-icon [icon]="faChevronUp" [ngClass]="isVisible ? 'icon-display' : 'icon-closed'"></fa-icon> -->
+        <app-arrow-icon></app-arrow-icon>
     </button>
 </div>
 </div>

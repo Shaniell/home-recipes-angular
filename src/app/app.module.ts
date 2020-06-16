@@ -17,6 +17,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TimePickerComponent } from './utils/time-picker/time-picker.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { IngredientsSearchPageComponent } from './ingredients-search-page/ingredients-search-page.component';
+import { NewRecipeIconComponent } from './icons/new-recipe-icon/new-recipe-icon.component';
+import { EditIconComponent } from './icons/edit-icon/edit-icon.component';
+import { DeleteIconComponent } from './icons/delete-icon/delete-icon.component';
+import { SaveIconComponent } from './icons/save-icon/save-icon.component';
+import { LogoIconComponent } from './icons/logo-icon/logo-icon.component';
+import { ArrowIconComponent } from './icons/arrow-icon/arrow-icon.component';
+import { StopEditIconComponent } from './icons/stop-edit-icon/stop-edit-icon.component';
+import { RemoveIconComponent } from './icons/remove-icon/remove-icon.component';
+import { AddIconComponent } from './icons/add-icon/add-icon.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +40,17 @@ import { IngredientsSearchPageComponent } from './ingredients-search-page/ingred
     DirectionsListComponent,
     DirectionComponent,
     TimePickerComponent,
-    IngredientsSearchPageComponent
+    IngredientsSearchPageComponent,
+    NewRecipeIconComponent,
+    EditIconComponent,
+    DeleteIconComponent,
+    SaveIconComponent,
+    LogoIconComponent,
+    ArrowIconComponent,
+    StopEditIconComponent,
+    RemoveIconComponent,
+    AddIconComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

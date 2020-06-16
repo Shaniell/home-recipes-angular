@@ -3,13 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
 import { IngredientsSearchPageComponent } from './ingredients-search-page/ingredients-search-page.component';
 import { LoginComponent } from './login/login.component';
+import { LoginGuard } from './guards/login.guard';
 
 
 const routes: Routes = [
   { path:'', component: LoginComponent },
-  { path:'MainPage', component: MainPageComponent },
-  { path:'MainPage/:id', component: MainPageComponent },
-  { path:'IngredientsSearchPage', component: IngredientsSearchPageComponent }
+  { path:'MainPage', component: MainPageComponent, canActivate: [LoginGuard] },
+  { path:'MainPage/:id', component: MainPageComponent, canActivate: [LoginGuard] },
+  { path:'IngredientsSearchPage', component: IngredientsSearchPageComponent, canActivate: [LoginGuard] }
 ];
 
 @NgModule({

@@ -4,10 +4,11 @@
       <div>{{displayStr}}</div>
     </div>
 
-    <div class="ingredient-edit" *ngIf="isNew" [style.flex-direction]="isNameOnly? 'row': 'column'">
-      <button type="button" class="btn-add" (click)="add()">+</button>
+    <div class="ingredient-edit" *ngIf="isNew">
       <input type="text" placeholder="Ingredient name" [(ngModel)]="ingredient.ingredientName" />
       <input type="text" placeholder="Amount" [(ngModel)]="ingredient.amount" *ngIf="!isNameOnly" />
       <input type="text" placeholder="Measurement type" [(ngModel)]="ingredient.measurementType" *ngIf="!isNameOnly" />
+      <button type="button" class="action add" (click)="add()">✓</button>
+      <button type="button" class="action cancel" (click)="reset()">X</button>
     </div>
   </div>

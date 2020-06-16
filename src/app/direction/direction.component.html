@@ -15,9 +15,9 @@
   </div>
 
   <div class="direction-content">
-    <app-ingredients-list class="ingredients" [ingredients]="direction.ingrediantsUsed" [isEditMode]="isEdit"></app-ingredients-list>
+    <app-ingredients-list class="ingredients" [ngClass]="{'edit': isEdit}" [ingredients]="direction.ingrediantsUsed" [isEditMode]="isEdit"></app-ingredients-list>
 
-    <div class="direction-description">
+    <div class="direction-description" [ngClass]="{'edit': isEdit}">
       <div class="direction-step direction-type">
         <div *ngIf="!isEdit">
           {{ direction.type != null? 'Type:': ''}}

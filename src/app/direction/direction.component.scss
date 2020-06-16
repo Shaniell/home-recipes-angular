@@ -32,12 +32,20 @@
 .ingredients {
     flex: 1;
 
+    &.edit {
+        flex-grow: 3;
+    }
+
 } 
 .direction-description {
     flex: 3;
     padding: 0 0 0 30px;
     border-left: 2px solid #d0d0d0;
     margin: 0 0 0 10px;
+
+    &.edit {
+        flex-grow: 2;
+    }
 }
 
 .title {

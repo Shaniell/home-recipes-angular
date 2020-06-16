@@ -39,6 +39,10 @@ export class IngredientComponent implements OnInit {
     this.ingredient = new Ingredient();
   }
 
+  reset(){
+    this.ingredient = new Ingredient();
+  }
+
   remove(){
     this.removeIngredient.emit(this.ingredient);
   }

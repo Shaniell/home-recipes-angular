@@ -1,19 +1,31 @@
 .ingredient {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 3px;
-    align-items: baseline;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 3px;
+  align-items: baseline;
+}
   
-  .ingredient-edit {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin: 3px;
+.ingredient-edit {
+  display: flex;
+  justify-content: flex-start;
+  margin: 3px;
   
-    & * {
-      padding: 5px;
+  .action {
+    border: 1px solid #ddd;
+    color: #ffffff;
+    font-size: 21px;
+    line-height: 5px;
+    border-radius: 10px;
+    outline: none;
+    
+    &.add {
+      font-weight: 800;
+      background-color: #7bceac;
+    }
+
+    &.cancel {
+      background-color: #b16464;
     }
   }
+}

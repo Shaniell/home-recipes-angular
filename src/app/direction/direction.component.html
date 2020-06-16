@@ -6,10 +6,6 @@
       {{isNew ? 'New' : ''}} step {{isNew ? '' : index}}
     </div>
     <div class="action-buttons" *ngIf="!isNew">
-      <button type="button" class="btn-edit" *ngIf="isEdit" (click)="saveDirection()">
-        <!-- <fa-icon [icon]="faSave"></fa-icon> -->
-        <app-save-icon></app-save-icon>
-      </button>
       <button type="button" class="btn-remove" *ngIf="isEdit" (click)="deleteDirection()">
         <app-remove-icon></app-remove-icon>
       </button>
@@ -22,9 +18,9 @@
   </div>
 
   <div class="direction-content">
-    <app-ingredients-list class="ingredients" [ingredients]="direction.ingrediantsUsed" [isEditMode]="isEdit"></app-ingredients-list>
+    <app-ingredients-list class="ingredients" [ngClass]="{'edit': isEdit}" [ingredients]="direction.ingrediantsUsed" [isEditMode]="isEdit"></app-ingredients-list>
 
-    <div class="direction-description">
+    <div class="direction-description" [ngClass]="{'edit': isEdit}">
       <div class="direction-step direction-type">
         <div *ngIf="!isEdit">
           {{ direction.type != null? 'Type:': ''}}
@@ -40,7 +36,9 @@
           {{direction.step}}
         </div>
         <div *ngIf="isEdit">
-          Description:<input type="text" [(ngModel)]="direction.step" placeholder="step">
+          Description:
+          <textarea name="description" [(ngModel)]="direction.step" placeholder="step"></textarea>
+          <!-- <input type="text" [(ngModel)]="direction.step" placeholder="step"> -->
         </div>
       </div>
       <div class="direction-step direction-preperationTime">

@@ -1,29 +1,29 @@
-
 <div class="search-bar" *ngIf="isShowHeader">
     <h3>Recipes</h3>
-    <input type="text" class="search-input" placeholder="search recipe" (click)="showList()" [(ngModel)]="searchText"/>
+    <input type="text" class="search-input" placeholder="search recipe" (click)="showList()" [(ngModel)]="searchText" />
     <div>
         <button class="display-list-btn" (click)="newRecipePopup = true;">
             <!-- <fa-icon [icon]="faFileMedical"></fa-icon> -->
             <app-new-recipe-icon></app-new-recipe-icon>
         </button>
-    <button [ngClass]="isVisible ? 'display-list-btn ' : 'display-list-btn closed'" 
+        <button [ngClass]="isVisible ? 'display-list-btn ' : 'display-list-btn closed'"
             (click)="changeListVisibility()">
-        <!-- <fa-icon [icon]="faChevronUp" [ngClass]="isVisible ? 'icon-display' : 'icon-closed'"></fa-icon> -->
-        <app-arrow-icon></app-arrow-icon>
-    </button>
+            <!-- <fa-icon [icon]="faChevronUp" [ngClass]="isVisible ? 'icon-display' : 'icon-closed'"></fa-icon> -->
+            <app-arrow-icon></app-arrow-icon>
+        </button>
+    </div>
 </div>
-</div>
-<div [style.visibility]="newRecipePopup ? 'visible' : 'hidden'" class="reciprNamePopup" >
-    <div class="dataInput">
-        <div class="form__group">
-            <input type="text" #newRecipeText class="form__input" id="name" placeholder="New Recipe Name" required="" />
-            <label for="name" class="form__label">New Recipe Name</label>
-          </div><button type="button" (click)="newRecipe(newRecipeText.value);newRecipeText.value='';">add</button><button type="button" (click)="newRecipePopup = false; newRecipeText.value='';">cancel</button>
+<div [style.visibility]="newRecipePopup ? 'visible' : 'hidden'" class="recipe-name-popup">
+    <div class="data-input">
+        <div>
+            <input type="text" #newRecipeText id="name" placeholder="New Recipe Name" required="" />
+            <label for="name">New Recipe Name</label>
+        </div>
+        <button type="button" (click)="newRecipe(newRecipeText.value);newRecipeText.value='';">add</button>
+        <button type="button" (click)="newRecipePopup = false; newRecipeText.value='';">cancel</button>
     </div>
 </div>
 <div [ngClass]="isVisible ? 'recipes-list' : 'recipes-list hidden'">
-    <div *ngFor="let recipe of recipeList | filter:searchText" (click)="SelectRecipe(recipe.id)"  ><a (click)="SelectRecipe(recipe.id)">{{recipe.recipeName}}</a></div>
+    <div *ngFor="let recipe of recipeList | filter:searchText" (click)="SelectRecipe(recipe.id)"><a
+            (click)="SelectRecipe(recipe.id)">{{recipe.recipeName}}</a></div>
 </div>
-
-

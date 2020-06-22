@@ -32,14 +32,21 @@
         margin: 0 20px;
         line-height: 2;
     
-        .ingredients {
-            flex: 1;
+        span {
+            flex-grow: 1
+        }
 
-            &.edit {
-                flex-grow: 3;
-            }
+        .ingredients-container {
+            flex-grow: 1;
+        
+            .ingredients {
+                flex: 1;
 
-        } 
+                &.edit {
+                    flex-grow: 3;
+                }
+            } 
+        }
     
         .direction-description {
             flex: 3;
@@ -59,17 +66,8 @@
                 margin: 0 0 0 10px;
             }
 
-            .direction-step {
-            }
-        
-            .direction-type {
-            }
-        
             .direction-explain {
                 white-space: pre-wrap;
-            }
-        
-            .direction-preperationTime {
             }
         }
     }

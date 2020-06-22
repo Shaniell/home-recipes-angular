@@ -1,6 +1,4 @@
-
 <div class="direction">
-
   <div class="direction-header">
     <div class="title">
       {{isNew ? 'New' : ''}} step {{isNew ? '' : index}}
@@ -16,43 +14,38 @@
       </button>
     </div>
   </div>
-
   <div class="direction-content">
-    <app-ingredients-list class="ingredients" [ngClass]="{'edit': isEdit}" [ingredients]="direction.ingrediantsUsed" [isEditMode]="isEdit"></app-ingredients-list>
-
+    <div class="ingredients-container">
+      <span *ngIf="isEdit">Ingredients</span>
+      <app-ingredients-list class="ingredients" [ngClass]="{'edit': isEdit}" [ingredients]="direction.ingrediantsUsed"
+        [isEditMode]="isEdit"></app-ingredients-list>
+    </div>
     <div class="direction-description" [ngClass]="{'edit': isEdit}">
-      <div class="direction-step direction-type">
-        <div *ngIf="!isEdit">
-          {{ direction.type != null? 'Type:': ''}}
-          {{direction.type}}
-        </div>
+      <div>
+        <span *ngIf="!isEdit && direction.type">
+          Type: {{direction.type}}
+        </span>
         <div *ngIf="isEdit">
           Type:<input type="text" [(ngModel)]="direction.type" placeholder="type">
         </div>
       </div>
-      <div class="direction-step direction-explain">
-        <div *ngIf="!isEdit">
-          {{ direction.step != null? 'Description:': ''}}
-          {{direction.step}}
-        </div>
+      <div class="direction-explain">
+        <span *ngIf="!isEdit && direction.step">
+          Description: {{direction.step}}
+        </span>
         <div *ngIf="isEdit">
-        Description:
+          Description:
           <textarea name="description" [(ngModel)]="direction.step" placeholder="step"></textarea>
         </div>
       </div>
-      <div class="direction-step direction-preperationTime">
-        <div *ngIf="!isEdit">
-          {{ direction.preperationTime != null? 'Preperation time:': ''}}
-          {{direction.preperationTime}}
-        </div>
+      <div>
+        <span *ngIf="!isEdit && direction.preperationTime">
+          Preperation time: {{direction.preperationTime}}
+        </span>
         <div *ngIf="isEdit">
           <!-- Preperation time: <app-time-picker [(Time)]="direction.preperationTime"></app-time-picker> -->
         </div>
-
       </div>
     </div>
-
   </div>
-
-
 </div>

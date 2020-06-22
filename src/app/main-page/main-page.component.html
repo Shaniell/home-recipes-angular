@@ -1,6 +1,5 @@
 <app-main-menu></app-main-menu>
 <div class="main-page">
-    
     <div class="content-section">
         <app-recipes-list class="recipes-list" (isEditMode)="setEditMode($event)"></app-recipes-list>
         <app-recipe class="recipe" [isEdit]="isEditMode"></app-recipe>

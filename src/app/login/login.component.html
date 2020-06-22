@@ -3,23 +3,20 @@
         <app-logo-icon></app-logo-icon>
         <h2>Home Recipes</h2>
     </div>
-
     <input type="text" #user placeholder="Username">
     <input type="password" #pass placeholder="Password">
-
-
-    <input  #eml type="email" placeholder="Email" email [style.display]="isSignUp ? 'block' : 'none'">
-
-
-    <button *ngIf="!isSignUp" (click)="login(user.value, pass.value); user.value=''; pass.value='';">Let's Cook!</button>
+    <input #eml type="email" placeholder="Email" email [style.display]="isSignUp ? 'block' : 'none'">
+    <button *ngIf="!isSignUp" (click)="login(user.value, pass.value); user.value=''; pass.value='';">Let's
+        Cook!</button>
     <button *ngIf="!isSignUp" class="signup" (click)="isSignUp=true; success=''; error='';">Sign Up</button>
-
-    <button *ngIf="isSignUp" class="signup" style="width: 50%;" (click)="signup(user.value, eml.value, pass.value); user.value=''; pass.value=''; eml.value='';" >Sign me up!</button>
-    <button *ngIf="isSignUp" (click)="isSignUp=false; success=''; error='';" style="width: 100px;align-self: flex-start; margin-left: 25%;">Login</button>
+    <button *ngIf="isSignUp" class="signup" style="width: 50%;"
+        (click)="signup(user.value, eml.value, pass.value); user.value=''; pass.value=''; eml.value='';">Sign me
+        up!</button>
+    <button *ngIf="isSignUp" (click)="isSignUp=false; success=''; error='';"
+        style="width: 100px;align-self: flex-start; margin-left: 25%;">Login</button>
     <div class="error">
         {{error}}
     </div>
-
     <div class="success">
         {{success}}
     </div>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -26,7 +27,7 @@ export class UserService {
       resolve(true);
       ///////////////////////////////
 
-      this.http.post(`${this.apiUrl}/users/login`, { username: username, password: password }).subscribe((data: User) => {
+      this.http.post(`${environment.apiUrl}/users/login`, { username: username, password: password }).subscribe((data: User) => {
         this.user._id = data._id;
         this.user.email = data.email;
         this.user.token = data.token;
@@ -54,7 +55,19 @@ export class UserService {
   }
 
   logout(username: string, password: string) : Observable<any> {
-    return this.http.post(`${this.apiUrl}/users/logout`, {user: this.user});
+    return this.http.post(`${environment.apiUrl}/users/logout`, {user: this.user});
+  }
+
+  logoutAll(username: string, password: string) : Observable<any> {
+    return this.http.post(`${environment.apiUrl}/users/logoutAll`, {user: this.user});
+  }
+
+  UserProfile(){
+    return this.http.get(`${environment.apiUrl}/users/me`);
+  }
+
+  EditUserProfile(){
+    return this.http.patch(`${environment.apiUrl}/users/me`, {user: this.user});
   }
   
   signup(username, email, password) : Observable<any> {
@@ -64,7 +77,6 @@ export class UserService {
       password: password
     }
 
-    return this.http.post(`${this.apiUrl}/users`, user);
+    return this.http.post(`${environment.apiUrl}/users`, user);
   }
-
 }

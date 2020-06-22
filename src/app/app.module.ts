@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +27,7 @@ import { StopEditIconComponent } from './icons/stop-edit-icon/stop-edit-icon.com
 import { RemoveIconComponent } from './icons/remove-icon/remove-icon.component';
 import { AddIconComponent } from './icons/add-icon/add-icon.component';
 import { LoginComponent } from './login/login.component';
+import { AuthInterceptor } from './services/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,13 @@ import { LoginComponent } from './login/login.component';
     FontAwesomeModule,
     Ng2SearchPipeModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

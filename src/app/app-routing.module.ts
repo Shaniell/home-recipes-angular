@@ -7,10 +7,17 @@ import { LoginGuard } from './guards/login.guard';
 
 
 const routes: Routes = [
-  { path:'', component: LoginComponent },
-  { path:'MainPage', component: MainPageComponent, canActivate: [LoginGuard] },
-  { path:'MainPage/:id', component: MainPageComponent, canActivate: [LoginGuard] },
-  { path:'IngredientsSearchPage', component: IngredientsSearchPageComponent, canActivate: [LoginGuard] }
+  { path:'',redirectTo:'/Login' , pathMatch: 'full'},
+  { path:'Login', component: LoginComponent },
+  { path:'MainPage', component: MainPageComponent
+  //, canActivate: [LoginGuard] 
+  },
+  { path:'MainPage/:id', component: MainPageComponent
+  //, canActivate: [LoginGuard] 
+  },
+  { path:'IngredientsSearchPage', component: IngredientsSearchPageComponent
+  //, canActivate: [LoginGuard] 
+  }
 ];
 
 @NgModule({

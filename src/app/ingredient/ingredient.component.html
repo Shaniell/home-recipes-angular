@@ -3,7 +3,6 @@
     <button class="remove-btn" *ngIf="isEdit" (click)="remove()">X</button>
     <div>{{displayStr}}</div>
   </div>
-
   <div class="ingredient-edit" *ngIf="isNew">
     <div class="ingredient-inputs">
       <input type="text" placeholder="Ingredient name" [(ngModel)]="ingredient.ingredientName" />

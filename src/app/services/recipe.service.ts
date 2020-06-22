@@ -4,7 +4,8 @@ import { Recipe } from '../models/recipe';
 import { Direction } from '../models/direction';
 import { Ingredient } from '../models/ingredient';
 import { TimeDuration } from '../helpers/TimeDuration';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -88,12 +89,15 @@ export class RecipeService {
     return new Promise((res, rej) => {
       res(this.recipes.filter(x => x.id == recipeId)[0]);
     });
+    //return this.http.get(`${environment.apiUrl}/recipes/${recipeId}`);
   }
 
-  getAllRecipes(): Promise<Recipe[]> {
+  getAllRecipes(): Promise<any>   {
     return new Promise((res, rej) => {
       res(this.recipes);
     });
+
+    //return this.http.get(`${environment.apiUrl}/recipes`);
   }
 
   updateRecipe(recipe: Recipe): Promise<Recipe> {
@@ -103,6 +107,8 @@ export class RecipeService {
       
       res(this.recipes[index]);
     });
+
+    //return this.http.patch(`${environment.apiUrl}/recipes/${recipe.id}`, recipe);
   }
 
   deleteRecipe(recipeId): Promise<Recipe[]> {
@@ -112,13 +118,18 @@ export class RecipeService {
       
       res(this.recipes);
     });
+
+    //return this.http.delete(`${environment.apiUrl}/recipes/${recipeId}`);
   }
 
   newRecipe(name) {
     let newRecipeId = new Date().toString();
-    this.recipes.push(new Recipe(newRecipeId, name));
+    let newRecipe = new Recipe(newRecipeId, name)
+    this.recipes.push(newRecipe);
 
     this.selectRecipe(newRecipeId);
+
+    //return this.http.post(`${environment.apiUrl}/recipes`, newRecipe);
   }
 
   updateRecipeDirections(recipeId: string, direction: Direction) {
@@ -135,6 +146,9 @@ export class RecipeService {
         
         this.recipes[index].directions.push(direction);
       }
+
+
+
       res(this.recipes[index].directions);
     });
   }

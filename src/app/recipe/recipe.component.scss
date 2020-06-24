@@ -17,8 +17,10 @@
     .actions {
         display: flex; 
         justify-content: flex-end;
-
-        .action {
+        
+        a {
+            height: 30px;
+            width: 30px;
             margin: 0 0 0 15px;
             cursor: pointer;
         }
@@ -27,11 +29,15 @@
 
 @media screen and (max-width:900px){
     .recipe {
-        padding: 10px 20px;
+        padding: 15px 20px;
 
         h1 {
             margin: 10px 0;
             font-size: 40px;
+        }
+
+        h3 {
+            margin: 12px 0;
         }
     }
 }

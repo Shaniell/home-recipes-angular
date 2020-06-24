@@ -52,6 +52,15 @@ input[type=text] {
     border-radius: 10px;
 }
 
+a, button {
+    cursor: pointer;
+    transition: transform 0.3s ease-in;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
 @font-face {
     font-family: Pacifico;
     src: url(assets/fonts/Pacifico-Regular.ttf) format("opentype");

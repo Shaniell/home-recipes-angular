@@ -1,6 +1,6 @@
 <app-main-menu></app-main-menu>
 <div class="main-ing-search">
+    <span>Search Ingredients:</span>
     <app-ingredients-list [isEditMode]="true" [isNameOnly]="true" [(ingredients)]="ingredients" (DataChanged)="dataChanged($event);"></app-ingredients-list>
-    <app-recipes-list [isShowHeader]="false" [(recipeList)]="recipesDisplay" ></app-recipes-list>
-    
+    <app-recipes-list [isShowHeader]="false" [(recipeList)]="recipesDisplay"></app-recipes-list>
 </div>

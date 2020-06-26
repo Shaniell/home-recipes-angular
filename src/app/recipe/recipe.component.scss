@@ -7,6 +7,19 @@
     border-radius: 7px;
     max-width: 1100px;
 
+    app-edit-icon {
+        &:active {
+            color: rgb(117, 117, 117);
+        }
+    }
+
+    app-delete-icon,
+    app-stop-edit-icon {
+        &:active {
+            fill: rgb(117, 117, 117);
+        }
+    }
+
     h1 {
         color: #d19f09;
         text-shadow: 3px 0px;

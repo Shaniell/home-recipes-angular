@@ -3,13 +3,11 @@
     <div class="title">
       {{isNew ? 'New' : ''}} step {{isNew ? '' : index}}
     </div>
-    <div class="action-buttons" *ngIf="!isNew">
-      <button type="button" class="btn-remove" *ngIf="isEdit" (click)="deleteDirection()">
-        <app-remove-icon></app-remove-icon>
+    <div class="action-buttons">
+      <button type="button" *ngIf="!isNew && isEdit" (click)="deleteDirection()">
+        <app-delete-icon></app-delete-icon>
       </button>
-    </div>
-    <div class="action-buttons" *ngIf="isNew">
-      <button type="button" class="btn-add" (click)="addDirection()">
+      <button type="button" *ngIf="isNew" (click)="addDirection()">
         <app-add-icon></app-add-icon>
       </button>
     </div>

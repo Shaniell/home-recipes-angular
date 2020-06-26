@@ -23,6 +23,21 @@
     .action-buttons {
         display: flex;
         justify-content: flex-end;
+        
+        button { 
+            border: 0px;
+            width: 30px;
+            background-color: #dddddd00;
+            line-height: 5px;
+            padding-right: 0;
+            outline: none;
+            transition: fill 0.2s;
+
+
+            &:active {
+                fill: rgb(117, 117, 117);
+            }
+        }
     }
 
     .direction-content {

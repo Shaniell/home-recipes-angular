@@ -8,7 +8,8 @@
             <app-delete-icon (click)="deleteRecipe()"></app-delete-icon>
         </a>
     </div>
-    <h1>{{ recipe.recipeName }}</h1>
+    <h1 *ngIf="!isEdit">{{ recipe.recipeName }}</h1>
+    <input type="text" *ngIf="isEdit" [(ngModel)]="recipe.recipeName" placeholder="New Recipe Name">
     <h3>Ingredients</h3>
     <app-ingredients-list [ingredients]="ingredients" [isEditMode]="false"></app-ingredients-list>
     <h3>Directions</h3>

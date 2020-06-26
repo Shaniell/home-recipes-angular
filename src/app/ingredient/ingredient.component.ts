@@ -31,7 +31,7 @@ export class IngredientComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.displayStr = `${this.ingredient.amount} ${this.ingredient.measurementType === 'unit' ? '' : this.ingredient.measurementType} ${this.ingredient.ingredientName}`;
+    this.displayStr = `${this.ingredient.amount || ''} ${this.ingredient.measurementType === 'unit' ? '' : this.ingredient.measurementType} ${this.ingredient.ingredientName}`;
   }
 
   add(){

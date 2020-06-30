@@ -37,11 +37,10 @@ export class RecipeComponent implements OnInit {
 
     if (this.RecipeId != "") {
 
-      this.recipeService.getRecipe(this.RecipeId).then(data => {
-        this.recipe = data;
+      this.recipeService.getRecipe(this.RecipeId).subscribe((recipe:Recipe) => {
+        this.recipe = recipe;
 
         this.updateIngredientsList();
-
       })
     }
 
@@ -50,10 +49,8 @@ export class RecipeComponent implements OnInit {
       if (recipeId != "") {
         this.RecipeId = recipeId;
 
-        this.recipeService.getRecipe(this.RecipeId).then(data => {
-          this.recipe = data;
-
-
+        this.recipeService.getRecipe(this.RecipeId).subscribe((recipe:Recipe) => {
+          this.recipe = recipe;
           this.updateIngredientsList();
         })
       }
@@ -75,7 +72,7 @@ export class RecipeComponent implements OnInit {
   }
 
   deleteRecipe(){
-    this.recipeService.deleteRecipe(this.RecipeId).then(recipes => {
+    this.recipeService.deleteRecipe(this.RecipeId).subscribe((recipe:Recipe) => {
       this.RecipeId = "";
     });
   }

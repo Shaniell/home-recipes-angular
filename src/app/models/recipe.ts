@@ -2,7 +2,7 @@ import { Ingredient } from './ingredient';
 import { Direction } from './direction';
 
 export class Recipe {
-    constructor(public _id : string = "",
+    constructor(public id : string = "",
                 public owner: string = "",
                 public isPrivate: boolean = true,
                 public recipeName : string = "",

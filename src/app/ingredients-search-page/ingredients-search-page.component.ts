@@ -17,9 +17,9 @@ export class IngredientsSearchPageComponent implements OnInit {
   constructor(private recipeSrv: RecipeService) { }
 
   ngOnInit(): void {
-    this.recipeSrv.getAllRecipes().subscribe((recipes:Recipe[]) => {
-      this.recipes = recipes;
-      this.recipesDisplay = Object.create(recipes);
+    this.recipeSrv.getAllRecipes().then(data => {
+      this.recipes = data;
+      this.recipesDisplay = Object.create(data);
     });
   }
 
@@ -46,12 +46,12 @@ export class IngredientsSearchPageComponent implements OnInit {
       });
 
       if (ings.length == 0) {
-        recipes.push(rec._id);
+        recipes.push(rec.id);
       }
 
     });
     
-    this.recipesDisplay = Object.create(this.recipes.filter(rec => recipes.indexOf(rec._id) != -1));
+    this.recipesDisplay = Object.create(this.recipes.filter(rec => recipes.indexOf(rec.id) != -1));
   }
 
 }

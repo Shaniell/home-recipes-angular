@@ -3,7 +3,6 @@ import { Direction } from '../models/direction';
 import { Ingredient } from '../models/ingredient';
 import { TimeDuration } from '../helpers/TimeDuration';
 import { RecipeService } from '../services/recipe.service';
-import { Recipe } from '../models/recipe';
 
 @Component({
   selector: 'app-directions-list',
@@ -13,10 +12,10 @@ import { Recipe } from '../models/recipe';
 export class DirectionsListComponent implements OnInit {
 
   @Input()
-  directions: Direction[] = [];
-  //   new Direction("1","1", "juleans", "cut", [new Ingredient("tomato", 1, "unit"), new Ingredient("cucumber", 1, "unit")], null),
-  //   new Direction("2","1", "", "cook", [], new TimeDuration(20, 50, 3))
-  // ];
+  directions: Direction[] = [
+    new Direction("1","1", "juleans", "cut", [new Ingredient("tomato", 1, "unit"), new Ingredient("cucumber", 1, "unit")], null),
+    new Direction("2","1", "", "cook", [], new TimeDuration(20, 50, 3))
+  ];
 
   @Input()
   recipeId: string;
@@ -35,22 +34,20 @@ export class DirectionsListComponent implements OnInit {
 
   
   add(direction: Direction){
-    this.recipeService.updateRecipeDirections(this.recipeId, Object.create(direction)).then((recipe: Recipe) =>{
-      console.log(recipe);
-      this.directions = recipe.directions;
+    this.recipeService.updateRecipeDirections(this.recipeId, Object.create(direction)).then((data: Direction[]) =>{
+      this.directions = data;
       this.AddedDirection.emit(true);
     });
   }
   delete(direction: Direction){
-    this.recipeService.deleteRecipeDirections(this.recipeId, Object.create(direction)).subscribe((recipe: Recipe) =>{
-      this.directions = recipe.directions;
+    this.recipeService.deleteRecipeDirections(this.recipeId, Object.create(direction)).then((data: Direction[]) =>{
+      this.directions = data;
       this.AddedDirection.emit(true);
     });
   }
   save(direction: Direction){
-    this.recipeService.updateRecipeDirections(this.recipeId, Object.create(direction)).then((data:Recipe)=>{
-      console.log(data);
-      this.directions = data.directions;
+    this.recipeService.updateRecipeDirections(this.recipeId, Object.create(direction)).then((data: Direction[]) =>{
+      this.directions = data;
       this.AddedDirection.emit(true);
     });
   }

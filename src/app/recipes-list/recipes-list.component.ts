@@ -35,8 +35,8 @@ export class RecipesListComponent implements OnInit {
 
   ngOnInit(): void {
     //if (this.recipeList == []) {
-      this.recipeService.getAllRecipes().then(data => {
-        this.recipeList = data;
+      this.recipeService.getAllRecipes().subscribe((recipes:Recipe[]) => {
+        this.recipeList = recipes;
       });
     //}
   }
@@ -56,7 +56,13 @@ export class RecipesListComponent implements OnInit {
   }
 
   newRecipe(recipeName = '') {
-    this.recipeService.newRecipe(recipeName);
-    this.isNewMode.emit();
+    this.recipeService.newRecipe(recipeName).subscribe((recipe:Recipe)=>{
+      this.newRecipePopup = false;
+      this.recipeService.selectRecipe(recipe._id);
+      this.isEditMode.emit(true);
+      this.isNewMode.emit();
+    });
+    
+
   }
 }

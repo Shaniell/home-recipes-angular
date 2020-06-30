@@ -35,21 +35,19 @@ export class RecipeComponent implements OnInit {
   
   ngOnInit(): void {
     if (this.RecipeId != "") {
-      
-      this.recipeService.getRecipe(this.RecipeId).then(data => {
-        this.recipe = data;
-        
+
+      this.recipeService.getRecipe(this.RecipeId).subscribe((recipe:Recipe) => {
+        this.recipe = recipe;
         this.updateIngredientsList();
-        
       })
     }
     
     this.recipeService.recipeIdObservable().subscribe(recipeId => {
       if (recipeId != "") {
         this.RecipeId = recipeId;
-        
-        this.recipeService.getRecipe(this.RecipeId).then(data => {
-          this.recipe = data;
+        this.recipeService.getRecipe(this.RecipeId).subscribe((recipe:Recipe) => {
+          this.recipe = recipe;
+
           this.updateIngredientsList();
         })
       }
@@ -75,7 +73,7 @@ export class RecipeComponent implements OnInit {
   }
 
   deleteRecipe(){
-    this.recipeService.deleteRecipe(this.RecipeId).then(recipes => {
+    this.recipeService.deleteRecipe(this.RecipeId).subscribe((recipe:Recipe) => {
       this.RecipeId = "";
     });
   }

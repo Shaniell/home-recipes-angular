@@ -22,9 +22,9 @@ export class UserService {
     let promise = new Promise<boolean>((resolve, reject) => {
 
       // test purposes //////////////
-      this.user = new User('1', 'shaniel', 'shaniel111@gmail.com', 'test');
-      this.isLoggedIn = true;
-      resolve(true);
+      // this.user = new User('1', 'shaniel', 'shaniel111@gmail.com', 'test');
+      // this.isLoggedIn = true;
+      // resolve(true);
       ///////////////////////////////
 
       this.http.post(`${environment.apiUrl}/users/login`, { username: username, password: password }).subscribe((data: User) => {

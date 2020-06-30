@@ -20,15 +20,16 @@ export class RecipesListComponent implements OnInit {
 
   @Input()
   recipeList: Recipe[] = [];
-
-  newRecipePopup: Boolean = false;
   searchText;
 
   @Input()
   isShowHeader: Boolean = true;
 
   @Output()
-  isEditMode: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+  isNewMode: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+
+  @Output()
+  recipeSelected: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
   constructor(private recipeService: RecipeService, private route: Router) { }
 
@@ -49,13 +50,13 @@ export class RecipesListComponent implements OnInit {
 
 
   SelectRecipe(recipeId: string) {
+    this.recipeSelected.emit();
     this.recipeService.selectRecipe(recipeId);
     this.route.navigate(['/MainPage', recipeId])
   }
 
-  newRecipe(recipeName) {
+  newRecipe(recipeName = '') {
     this.recipeService.newRecipe(recipeName);
-    this.newRecipePopup = false;
-    this.isEditMode.emit(true);
+    this.isNewMode.emit();
   }
 }

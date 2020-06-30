@@ -78,6 +78,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
     margin: 0 0 15px 0;
     animation: 0.5s slide-open forwards ease;
     transition: transform 0.3s linear;
@@ -104,16 +105,12 @@
         justify-content: center;
         align-items: center;
         flex-grow: 1;
-        margin: 15px 15px 0 0;
+        margin:5px;
         background: #ffce46;
         border-radius: 25px;
         transition: all 0.3s linear;
         border-bottom: 2px solid #fff9e8;
         overflow: hidden;
-
-        &:last-child {
-            margin: 15px 0 15px 0;
-        }
 
         a {
             text-decoration: none;
@@ -145,53 +142,6 @@
         to { transform: scaleY(0);  }
 }
 
-.recipe-name-popup {
-    display: flex;
-    justify-content: flex-end;
-    align-content: center;
-    align-items: center;
-
-    .data-input {
-        background-color: white;
-        border-radius: 10px;
-        padding:10px;
-        position: absolute;
-        z-index: 2;
-        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-
-        label {
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.2rem;
-            margin-left: 2rem;
-            margin-top: 0.7rem;
-            display: block;
-            transition: all 0.3s;
-            transform: translateY(0rem);
-        }
-          
-        input {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
-            font-size: 1.2rem;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            border-radius: 0.2rem;
-            background-color: rgb(255, 255, 255);
-            border: none;
-            display: block;
-            border-bottom: 0.3rem solid transparent;
-            transition: all 0.3s;
-
-            &:placeholder-shown + label {
-                opacity: 0;
-                visibility: hidden;
-                -webkit-transform: translateY(-4rem);
-                transform: translateY(-4rem);
-            }
-        }
-    }
-}
-
 @media screen and (max-width: 700px) {
     .search-bar {
         h3 {
@@ -204,11 +154,6 @@
 
         div {
             height: 120px;
-            margin: 10px 10px 0 0;
-
-            &:last-child {
-                margin: 10px 10px 0 0;
-            }
 
             a {
                 font-size: 16px;

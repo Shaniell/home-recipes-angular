@@ -2,23 +2,13 @@
     <h3>Recipes</h3>
     <input type="text" class="search-input" placeholder="search recipe" (click)="showList()" [(ngModel)]="searchText" />
     <div class="display-list">
-        <button (click)="newRecipePopup = true;">
+        <button (click)="newRecipe();">
             <app-new-recipe-icon></app-new-recipe-icon>
         </button>
         <button class="expand-btn" [ngClass]="{'closed': !isVisible}"
             (click)="changeListVisibility()">
             <app-arrow-icon></app-arrow-icon>
         </button>
-    </div>
-</div>
-<div [style.visibility]="newRecipePopup ? 'visible' : 'hidden'" class="recipe-name-popup">
-    <div class="data-input">
-        <div>
-            <input type="text" #newRecipeText id="name" placeholder="New Recipe Name" required="" />
-            <label for="name">New Recipe Name</label>
-        </div>
-        <button type="button" (click)="newRecipe(newRecipeText.value);newRecipeText.value='';">add</button>
-        <button type="button" (click)="newRecipePopup = false; newRecipeText.value='';">cancel</button>
     </div>
 </div>
 <div [ngClass]="isVisible ? 'recipes-list' : 'recipes-list hidden'">

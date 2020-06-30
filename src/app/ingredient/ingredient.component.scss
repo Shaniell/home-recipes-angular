@@ -9,13 +9,21 @@
     width: 30px;
     color: #808080;
     font-size: 10px;
+    outline: none;
+
+    &:active {
+      color: #555;
+    }
+
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }
   
 .ingredient-edit {
   display: flex;
   justify-content: flex-end;
-  margin: 3px;
 
   .ingredient-inputs {
     display: flex;
@@ -41,13 +49,25 @@
       outline: none;
       height: 28px;
       
+      &:hover {
+        transform: none;
+      }
+
       &.add {
         font-weight: 800;
         background-color: #7bceac;
+
+        &:hover {
+          background-color: #5ead8c;
+        }
       }
 
       &.cancel {
         background-color: #b16464;
+        
+        &:hover {
+          background-color: #964e4e;
+        }
       }
     }
   }

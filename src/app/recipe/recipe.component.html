@@ -1,16 +1,15 @@
 <div class="recipe" *ngIf="RecipeId != ''">
     <div class="actions">
-        <!-- <fa-icon class="action" [icon]="!isEdit ? faPen : faTimes" size="2x" (click)="isEdit=!isEdit"></fa-icon>
-        <fa-icon class="action" [icon]="faTrash" size="2x" (click)="deleteRecipe()"></fa-icon> -->
-        <div style="height: 40px; width: 40px;" class="action">
+        <a>
             <app-edit-icon *ngIf="!isEdit" (click)="isEdit=!isEdit"></app-edit-icon>
             <app-stop-edit-icon *ngIf="isEdit" (click)="isEdit=!isEdit"></app-stop-edit-icon>
-        </div>
-        <div style="height: 40px; width: 40px;" class="action">
+        </a>
+        <a>
             <app-delete-icon (click)="deleteRecipe()"></app-delete-icon>
-        </div>
+        </a>
     </div>
-    <h1>{{ recipe.recipeName }}</h1>
+    <h1 *ngIf="!isEdit">{{ recipe.recipeName }}</h1>
+    <input type="text" *ngIf="isEdit" [(ngModel)]="recipe.recipeName" placeholder="New Recipe Name">
     <h3>Ingredients</h3>
     <app-ingredients-list [ingredients]="ingredients" [isEditMode]="false"></app-ingredients-list>
     <h3>Directions</h3>

@@ -3,20 +3,18 @@
     <div class="title">
       {{isNew ? 'New' : ''}} step {{isNew ? '' : index}}
     </div>
-    <div class="action-buttons" *ngIf="!isNew">
-      <button type="button" class="btn-remove" *ngIf="isEdit" (click)="deleteDirection()">
-        <app-remove-icon></app-remove-icon>
+    <div class="action-buttons">
+      <button type="button" *ngIf="!isNew && isEdit" (click)="deleteDirection()">
+        <app-delete-icon></app-delete-icon>
       </button>
-    </div>
-    <div class="action-buttons" *ngIf="isNew">
-      <button type="button" class="btn-add" (click)="addDirection()">
+      <button type="button" *ngIf="isNew" (click)="addDirection()">
         <app-add-icon></app-add-icon>
       </button>
     </div>
   </div>
   <div class="direction-content">
     <div class="ingredients-container">
-      <span *ngIf="isEdit">Ingredients</span>
+      <span *ngIf="isEdit" class="headline">Ingredients</span>
       <app-ingredients-list class="ingredients" [ngClass]="{'edit': isEdit}" [ingredients]="direction.ingrediantsUsed"
         [isEditMode]="isEdit"></app-ingredients-list>
     </div>
@@ -25,7 +23,7 @@
         <span *ngIf="!isEdit && direction.type">
           Type: {{direction.type}}
         </span>
-        <div *ngIf="isEdit">
+        <div *ngIf="isEdit" class="headline">
           Type:<input type="text" [(ngModel)]="direction.type" placeholder="type">
         </div>
       </div>
@@ -33,7 +31,7 @@
         <span *ngIf="!isEdit && direction.step">
           Description: {{direction.step}}
         </span>
-        <div *ngIf="isEdit">
+        <div *ngIf="isEdit" class="headline">
           Description:
           <textarea name="description" [(ngModel)]="direction.step" placeholder="step"></textarea>
         </div>

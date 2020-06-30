@@ -1,5 +1,34 @@
-.main-ing-search{
+.main-ing-search {
     display: flex;
-    justify-content: space-around;
-    margin-top:50px;
+    flex-direction: column;
+    margin:50px;
+    align-items: stretch;
+
+    span {
+        font-weight: bold;
+        margin: 0 0 15px 18px;
+    }
+
+    span,
+    app-ingredients-list {
+        align-self: center;
+        min-width: 50%;
+    }
+
+    app-ingredients-list {
+        margin: 0 0 15px 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-ing-search {
+        span {
+            margin: 0 0 15px 0;
+        }
+
+        span,
+        app-ingredients-list {
+            align-self: stretch;
+        }
+    }
 }

@@ -57,9 +57,7 @@ export class RecipesListComponent implements OnInit {
 
   newRecipe(recipeName = '') {
     this.recipeService.newRecipe(recipeName).subscribe((recipe:Recipe)=>{
-      this.newRecipePopup = false;
       this.recipeService.selectRecipe(recipe._id);
-      this.isEditMode.emit(true);
       this.isNewMode.emit();
     });
     

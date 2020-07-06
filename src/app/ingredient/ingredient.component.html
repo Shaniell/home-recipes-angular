@@ -6,7 +6,7 @@
   <div class="ingredient-edit" *ngIf="isNew">
     <div class="ingredient-inputs">
       <input type="text" placeholder="Ingredient name" [(ngModel)]="ingredient.ingredientName" />
-      <input type="text" placeholder="Amount" [(ngModel)]="ingredient.amount" *ngIf="!isNameOnly" />
+      <input type="number" placeholder="Amount" [(ngModel)]="ingredient.amount" *ngIf="!isNameOnly"  />
       <input type="text" placeholder="Measurement type" [(ngModel)]="ingredient.measurementType" *ngIf="!isNameOnly" />
     </div>
     <div class="actions">

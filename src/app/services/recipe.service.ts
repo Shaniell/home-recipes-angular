@@ -6,6 +6,7 @@ import { Ingredient } from '../models/ingredient';
 import { TimeDuration } from '../helpers/TimeDuration';
 import { Subject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,9 @@ import { environment } from 'src/environments/environment';
 export class RecipeService {
 
   public recipeSelectedEvent: Subject<string> = new Subject<string>();
-  private selectedRecipeId= "";
-
+  private selectedRecipeId = "";
+  private selectedRecipe: Recipe;
+  private allRecipes: Recipe[];
 
   // private recipes: Recipe[] = [
   //   new Recipe("1",
@@ -76,13 +78,16 @@ export class RecipeService {
 
   constructor(private http: HttpClient) { }
 
-  selectRecipe(recipeId: string){
+  selectRecipe(recipeId: string) {
     console.log("select Recipe");
     this.selectedRecipeId = recipeId;
+    this.getRecipe(this.selectedRecipeId).subscribe((data: Recipe) => {
+      this.selectedRecipe = data;
+    });
     this.recipeSelectedEvent.next(recipeId);
   }
 
-  recipeIdObservable(){
+  recipeIdObservable() {
     return this.recipeSelectedEvent.asObservable();
   }
 
@@ -94,7 +99,7 @@ export class RecipeService {
     return this.http.get<Recipe>(`${environment.apiUrl}/recipes/${recipeId}`);
   }
 
-  getAllRecipes(): Observable<Recipe[]>   {
+  getAllRecipes(): Observable<Recipe[]> {
     // return new Promise((res, rej) => {
     //   res(this.recipes);
     // });
@@ -106,7 +111,7 @@ export class RecipeService {
     // return new Promise((res, rej) => {
     //   let index = this.recipes.findIndex(x => x.id == recipe.id)
     //   this.recipes[index] = recipe;
-      
+
     //   res(this.recipes[index]);
     // });
 
@@ -118,14 +123,14 @@ export class RecipeService {
     // return new Promise((res, rej) => {
     //   let index = this.recipes.findIndex(x => x.id == recipeId)
     //   this.recipes.splice(index, 1);
-      
+
     //   res(this.recipes);
     // });
     console.log("delete Recipe");
     return this.http.delete<Recipe>(`${environment.apiUrl}/recipes/${recipeId}`);
   }
 
-  newRecipe(name) : Observable<Recipe> {
+  newRecipe(name): Observable<Recipe> {
     //let newRecipeId = new Date().toString();
     let newRecipe = new Recipe();
     //newRecipe.recipeName = name;
@@ -137,7 +142,7 @@ export class RecipeService {
     return this.http.post<Recipe>(`${environment.apiUrl}/recipes`, newRecipe);
   }
 
-  async updateRecipeDirections(recipeId: string, direction: Direction) : Promise<Recipe>{
+  async updateRecipeDirections(recipeId: string, direction: Direction): Promise<Recipe> {
     //var currentDir = Object.create(direction);
     //console.log(direction);
     // return new Promise((res, rej) => {
@@ -148,7 +153,7 @@ export class RecipeService {
     //   }
     //   else {
     //     direction.id = new Date().toString();
-        
+
     //     this.recipes[index].directions.push(direction);
     //   }
 
@@ -158,60 +163,77 @@ export class RecipeService {
     // });
 
     console.log("updateRecipeDirections");
+    console.log(direction);
 
-    var recipeObservable: Observable<Recipe>; 
-    var recipe;
+    return new Promise<Recipe>((res, rej) => {
 
-    await this.http.get(`${environment.apiUrl}/recipes/${recipeId}`).subscribe((data: Recipe)=>{
-      recipe = data
 
-      if(direction.id != ""){
-        let i = recipe.directions.findIndex(x => x.id == direction.id);
-        recipe.directions[i] = direction;
-      }
-      else{
-        direction.id = new Date().toString();
-        recipe.directions.push(direction);
-      }
-      
+      var recipeObservable: Observable<Recipe>;
+      var recipe;
+
+      this.http.get(`${environment.apiUrl}/recipes/${recipeId}`).subscribe((data: Recipe) => {
+        recipe = data
+
+        if (direction._id != "") {
+          let i = recipe.directions.findIndex(x => x._id == direction._id);
+
+          if (i == -1){
+            delete direction._id;
+            recipe.directions.push(direction);
+          }else{
+            recipe.directions[i] = direction;
+          }
+        }
+        else {
+          recipe.directions.push(direction);
+        }
+
+        console.log(recipe);
+        this.http.patch<Recipe>(`${environment.apiUrl}/recipes/${recipeId}`, recipe).subscribe((data: Recipe) => {
+          res(data);
+        });
+      });
     });
-    
-    return this.http.patch<Recipe>(`${environment.apiUrl}/recipes/${recipeId}`,recipe).toPromise();
+
   }
 
-  deleteRecipeDirections(recipeId: string, direction: Direction) : Observable<Recipe>{
+  async deleteRecipeDirections(recipeId: string, direction: Direction): Promise<Recipe> {
     // //var currentDir = Object.create(direction);
     // return new Promise((res, rej) => {
     //   var index = this.recipes.findIndex(x => x._id == recipeId)
 
     //   var i = this.recipes[index].directions.findIndex(x => x.id == direction.id);
     //   this.recipes[index].directions.splice(i, 1);
-      
+
     //   res(this.recipes[index].directions);
     // });
 
-    console.log("deleteRecipeDirections");
-    let recipeObservable: Observable<Recipe>;
+    return new Promise((res, rej) => {
 
-    this.getRecipe(recipeId).subscribe((recipe: Recipe)=>{
 
-      var i = recipe.directions.findIndex(x=> x.id==direction.id)
-      recipe.directions.splice(i, 1);
+      console.log("deleteRecipeDirections");
+      let recipeObservable: Observable<Recipe>;
 
-      recipeObservable = this.http.patch<Recipe>(`${environment.apiUrl}/recipes/${recipeId}`,recipe);
+      this.getRecipe(recipeId).subscribe((recipe: Recipe) => {
+
+        var i = recipe.directions.findIndex(x => x._id == direction._id)
+        recipe.directions.splice(i, 1);
+
+        this.http.patch<Recipe>(`${environment.apiUrl}/recipes/${recipeId}`, recipe).subscribe((rec: Recipe) => {
+          res(rec);
+        });
+      });
     });
-
-    return recipeObservable;
   }
 
   updateRecipeIngredients(recipeId: string): Promise<Ingredient[]> {
     console.log("updateRecipeIngredients");
     return new Promise((res, rej) => {
-      this.getRecipe(recipeId).subscribe((recipe: Recipe)=>{
+      this.getRecipe(recipeId).subscribe((recipe: Recipe) => {
         var directions = Object.create(recipe.directions);
-        var ingredients:any = {};
+        var ingredients: any = {};
         directions.forEach(x => {
-          var  ing = x.ingrediantsUsed.map(a=> Object.create(a));
+          var ing = x.ingrediantsUsed.map(a => Object.create(a));
           ing.forEach(y => {
             if (ingredients[y.ingredientName] == null) {
               ingredients[y.ingredientName] = y;
@@ -223,30 +245,19 @@ export class RecipeService {
 
           recipe.ingredients = [];
           Object.keys(ingredients).forEach(x => recipe.ingredients.push(ingredients[x]));
-          this.http.patch<Recipe>(`${environment.apiUrl}/recipes/${recipeId}`,recipe).subscribe((data:Recipe)=>{
+          this.http.patch<Recipe>(`${environment.apiUrl}/recipes/${recipeId}`, recipe).subscribe((data: Recipe) => {
             res(data.ingredients);
           });
         });
       })
-      
-      
-      
-      
-
-          
-      
-      
-      
-      
-      
     });
   }
 
-  getRecipeIngredients(recipeId: string) : Promise<Ingredient[]>{
+  getRecipeIngredients(recipeId: string): Promise<Ingredient[]> {
     console.log("getRecipeIngredients");
 
     return new Promise((res, rej) => {
-      this.getRecipe(recipeId).subscribe((recipe:Recipe)=>{
+      this.getRecipe(recipeId).subscribe((recipe: Recipe) => {
         res(recipe.ingredients);
       });
     });

@@ -35,20 +35,21 @@ export class DirectionsListComponent implements OnInit {
 
   
   add(direction: Direction){
-    this.recipeService.updateRecipeDirections(this.recipeId, Object.create(direction)).then((recipe: Recipe) =>{
+    this.recipeService.updateRecipeDirections(this.recipeId, direction).then((recipe: Recipe) =>{
       console.log(recipe);
       this.directions = recipe.directions;
       this.AddedDirection.emit(true);
     });
   }
   delete(direction: Direction){
-    this.recipeService.deleteRecipeDirections(this.recipeId, Object.create(direction)).subscribe((recipe: Recipe) =>{
+    this.recipeService.deleteRecipeDirections(this.recipeId, direction).then((recipe: Recipe) =>{
       this.directions = recipe.directions;
       this.AddedDirection.emit(true);
     });
   }
   save(direction: Direction){
-    this.recipeService.updateRecipeDirections(this.recipeId, Object.create(direction)).then((data:Recipe)=>{
+    console.log(direction);
+    this.recipeService.updateRecipeDirections(this.recipeId, direction).then((data:Recipe)=>{
       console.log(data);
       this.directions = data.directions;
       this.AddedDirection.emit(true);

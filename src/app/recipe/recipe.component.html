@@ -1,7 +1,10 @@
 <div class="recipe" *ngIf="RecipeId != ''">
     <div class="actions">
         <a>
-            <app-edit-icon *ngIf="!isEdit" (click)="isEdit=!isEdit"></app-edit-icon>
+            <app-save-icon *ngIf="isEdit" (click)="isEdit=!isEdit; saveRecipe();"></app-save-icon>
+        </a>
+        <a>
+            <app-edit-icon *ngIf="!isEdit" (click)="isEdit=!isEdit;"></app-edit-icon>
             <app-stop-edit-icon *ngIf="isEdit" (click)="isEdit=!isEdit"></app-stop-edit-icon>
         </a>
         <a>

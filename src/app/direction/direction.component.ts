@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { Ingredient } from '../models/ingredient';
 import { TimeDuration } from '../helpers/TimeDuration';
 import { Direction } from '../models/direction';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-direction',
   templateUrl: './direction.component.html',
@@ -44,17 +44,18 @@ export class DirectionComponent implements OnInit {
   }
 
   addDirection(){
-    this.add.emit(Object.create(this.direction));
+    let dir = new Direction(null, this.direction.recipeId, this.direction.step, this.direction.type, this.direction.ingrediantsUsed);//, this.direction.preperationTime);
+    this.add.emit(dir);
     this.direction = new Direction();
   }
 
   deleteDirection(){
-    // this.delete.emit(Object.create(this.direction));
+    this.delete.emit(Object.create(this.direction));
     this.isDeleted = true;
   }
 
   saveDirection(){
-    this.save.emit(Object.create(this.direction));
+    this.save.emit(this.direction);
   }
 
 }

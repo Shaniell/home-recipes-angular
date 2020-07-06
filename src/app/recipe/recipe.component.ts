@@ -77,4 +77,10 @@ export class RecipeComponent implements OnInit {
       this.RecipeId = "";
     });
   }
+
+  saveRecipe(){
+    this.recipeService.updateRecipe(this.recipe).subscribe((currentRecipe: Recipe)=>{
+      console.log(currentRecipe);
+    });
+  }
 }

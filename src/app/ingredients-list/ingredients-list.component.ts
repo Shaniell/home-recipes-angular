@@ -28,13 +28,18 @@ export class IngredientsListComponent implements OnInit{
   }
 
   addIngredient(ing : Ingredient): void {
-      this.ingredients.push(ing);
-      this.DataChanged.emit(this.ingredients);
+    let ingreds = [...this.ingredients];
+    ingreds.push({...ing});
+    this.ingredients = ingreds;
+    this.DataChanged.emit(this.ingredients);
   }
 
   removeIngedient(ing : Ingredient): void {
       let index = this.ingredients.findIndex(x=> x.ingredientName == ing.ingredientName);
-      this.ingredients.splice(index, 1);
+      let currIngs = [...this.ingredients];
+      currIngs.splice(index, 1);
+      this.ingredients = currIngs;
+      //this.ingredients.splice(index, 1);
       this.DataChanged.emit(this.ingredients);
   }
 

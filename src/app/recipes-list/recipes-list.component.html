@@ -5,13 +5,15 @@
         <button (click)="newRecipe();">
             <app-new-recipe-icon></app-new-recipe-icon>
         </button>
-        <button class="expand-btn" [ngClass]="{'closed': !isVisible}"
-            (click)="changeListVisibility()">
+        <button class="expand-btn" [ngClass]="{'closed': !isVisible}" (click)="changeListVisibility()">
             <app-arrow-icon></app-arrow-icon>
         </button>
     </div>
 </div>
 <div [ngClass]="isVisible ? 'recipes-list' : 'recipes-list hidden'">
-    <div *ngFor="let recipe of recipeList | filter:searchText" (click)="SelectRecipe(recipe._id)"><a
-            (click)="SelectRecipe(recipe._id)">{{recipe.recipeName}}</a></div>
+    <!-- <div *ngFor="let recipe of recipeList | filter:searchText" (click)="SelectRecipe(recipe._id)"><a
+            (click)="SelectRecipe(recipe._id)">{{recipe.recipeName}}</a></div> -->
+
+    <div *ngFor="let recipe of (recipeListStore | async).recipes | filter:searchText" (click)="SelectRecipe(recipe)"><a
+            (click)="SelectRecipe(recipe)">{{recipe.recipeName}}</a></div>
 </div>

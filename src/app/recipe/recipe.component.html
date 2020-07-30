@@ -1,4 +1,4 @@
-<div class="recipe" *ngIf="RecipeId != ''">
+<div class="recipe" *ngIf="recipe._id != ''">
     <div class="actions">
         <a>
             <app-save-icon *ngIf="isEdit" (click)="isEdit=!isEdit; saveRecipe();"></app-save-icon>
@@ -14,7 +14,7 @@
     <h1 *ngIf="!isEdit">{{ recipe.recipeName }}</h1>
     <input type="text" *ngIf="isEdit" [(ngModel)]="recipe.recipeName" placeholder="New Recipe Name">
     <h3>Ingredients</h3>
-    <app-ingredients-list [ingredients]="ingredients" [isEditMode]="false"></app-ingredients-list>
+    <app-ingredients-list [ingredients]="recipe.ingredients" [isEditMode]="false"></app-ingredients-list>
     <h3>Directions</h3>
-    <app-directions-list [directions]="recipe.directions" [isEdit]="isEdit" [recipeId]="recipe._id" (AddedDirection)="updateIngredientsList()"  ></app-directions-list>
+    <app-directions-list [directions]="recipe.directions" [isEdit]="isEdit" [recipe]="recipe" ></app-directions-list>
 </div>

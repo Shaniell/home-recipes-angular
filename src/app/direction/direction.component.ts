@@ -13,6 +13,8 @@ export class DirectionComponent implements OnInit {
   @Input()
   direction: Direction = new Direction();
 
+  directionLocal: Direction = new Direction();
+
   @Input()
   recipeId:string;
 
@@ -41,20 +43,39 @@ export class DirectionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.directionLocal = {...this.direction};
+  }
+
+  ngDoCheck(){
+    this.direction = {...this.directionLocal};
   }
 
   addDirection(){
     let dir = new Direction(null, this.direction.recipeId, this.direction.step, this.direction.type, this.direction.ingrediantsUsed);//, this.direction.preperationTime);
     this.add.emit(dir);
+    console.log("addDirection", this.direction)
+    console.log(dir);
     this.direction = new Direction();
+    this.directionLocal = new Direction();
+
   }
 
   deleteDirection(){
+    console.log("deleteDirection", this.direction);
+    this.direction = this.directionLocal;
     this.delete.emit(Object.create(this.direction));
     this.isDeleted = true;
   }
 
   saveDirection(){
+    this.direction = this.directionLocal;
+    console.log("saveDirection", this.direction);
+    this.save.emit(this.direction);
+  }
+
+  UpdateIngredients(ings){
+    this.directionLocal.ingrediantsUsed = ings;
+    this.direction.ingrediantsUsed = ings;
     this.save.emit(this.direction);
   }
 

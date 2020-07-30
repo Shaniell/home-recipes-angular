@@ -3,6 +3,9 @@ import { faChevronDown, faFileMedical, faChevronUp } from '@fortawesome/free-sol
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recipe';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as RecipeActions from '../store/recipe.actions';
 
 
 
@@ -22,6 +25,8 @@ export class RecipesListComponent implements OnInit {
   recipeList: Recipe[] = [];
   searchText;
 
+  recipeListStore: Observable<{recipes: Recipe[]}>;
+
   @Input()
   isShowHeader: Boolean = true;
 
@@ -31,14 +36,18 @@ export class RecipesListComponent implements OnInit {
   @Output()
   recipeSelected: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
-  constructor(private recipeService: RecipeService, private route: Router) { }
+  constructor(private recipeService: RecipeService, 
+              private route: Router,
+              private store: Store<{recipe: {recipes: Recipe[], selectedRecipe: Recipe}}>) { }
 
   ngOnInit(): void {
-    //if (this.recipeList == []) {
-      this.recipeService.getAllRecipes().subscribe((recipes:Recipe[]) => {
-        this.recipeList = recipes;
-      });
-    //}
+    this.recipeService.getAllRecipes();
+    this.recipeListStore = this.store.select('recipe');
+  }
+
+  ngOnChanges(){
+    this.recipeService.getRecipes(this.recipeList);
+    this.recipeListStore = this.store.select('recipe');
   }
 
   showList() {
@@ -49,15 +58,16 @@ export class RecipesListComponent implements OnInit {
   }
 
 
-  SelectRecipe(recipeId: string) {
+  SelectRecipe(recipe: Recipe) {
     this.recipeSelected.emit();
-    this.recipeService.selectRecipe(recipeId);
-    this.route.navigate(['/MainPage', recipeId])
+    this.recipeService.selectRecipe(recipe);
+    this.route.navigate(['/MainPage']);
   }
 
   newRecipe(recipeName = '') {
     this.recipeService.newRecipe(recipeName).subscribe((recipe:Recipe)=>{
-      this.recipeService.selectRecipe(recipe._id);
+      this.store.dispatch(new RecipeActions.AddRecipe(recipe))
+      this.recipeService.selectRecipe(recipe);
       this.isNewMode.emit();
     });
     

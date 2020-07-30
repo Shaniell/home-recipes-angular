@@ -19,7 +19,7 @@ export class DirectionsListComponent implements OnInit {
   // ];
 
   @Input()
-  recipeId: string;
+  recipe: Recipe;
 
   @Input()
   isEdit: Boolean = true;
@@ -35,25 +35,14 @@ export class DirectionsListComponent implements OnInit {
 
   
   add(direction: Direction){
-    this.recipeService.updateRecipeDirections(this.recipeId, direction).then((recipe: Recipe) =>{
-      console.log(recipe);
-      this.directions = recipe.directions;
-      this.AddedDirection.emit(true);
-    });
+    this.recipeService.updateRecipeDirections(this.recipe, direction);
   }
   delete(direction: Direction){
-    this.recipeService.deleteRecipeDirections(this.recipeId, direction).then((recipe: Recipe) =>{
-      this.directions = recipe.directions;
-      this.AddedDirection.emit(true);
-    });
+    this.recipeService.deleteRecipeDirections(this.recipe, direction);
   }
+
   save(direction: Direction){
-    console.log(direction);
-    this.recipeService.updateRecipeDirections(this.recipeId, direction).then((data:Recipe)=>{
-      console.log(data);
-      this.directions = data.directions;
-      this.AddedDirection.emit(true);
-    });
+    this.recipeService.updateRecipeDirections(this.recipe, direction);
   }
 
 }

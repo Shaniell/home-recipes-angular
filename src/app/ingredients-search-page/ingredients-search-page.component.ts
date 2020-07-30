@@ -2,6 +2,8 @@ import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Ingredient } from '../models/ingredient';
 import { Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-ingredients-search-page',
@@ -12,19 +14,26 @@ export class IngredientsSearchPageComponent implements OnInit {
 
   ingredients: Ingredient[] = [];
   recipes: Recipe[] = [];
+  recipeListStore: Observable<{recipes: Recipe[]}>;
   recipesDisplay: Recipe[] = [];
 
-  constructor(private recipeSrv: RecipeService) { }
+  constructor(private recipeSrv: RecipeService,
+              private store: Store<{recipe: {recipes: Recipe[], selectedRecipe: Recipe}}>) { }
 
   ngOnInit(): void {
-    this.recipeSrv.getAllRecipes().subscribe((recipes:Recipe[]) => {
-      this.recipes = recipes;
-      this.recipesDisplay = Object.create(recipes);
-    });
+    this.recipeSrv.getAllRecipes();
+    
+    this.recipeListStore = this.store.select('recipe');
+    this.recipeListStore.subscribe(recipes=>{
+      this.recipesDisplay = Object.create(recipes.recipes);
+
+      if (this.recipes.length == 0){
+        this.recipes = Object.create(recipes.recipes);
+      }
+    })
   }
 
   dataChanged(ing: Ingredient[]) {
-
     let recipes = [];
 
     let ings = [];
@@ -52,6 +61,7 @@ export class IngredientsSearchPageComponent implements OnInit {
     });
     
     this.recipesDisplay = Object.create(this.recipes.filter(rec => recipes.indexOf(rec._id) != -1));
+    this.recipeSrv.getRecipes(this.recipesDisplay);
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="directions-list">
   <app-direction *ngFor="let direction of directions ; let i = index" [index]="i+1" [direction]="direction"
-    [isEdit]="isEdit" [isNew]="false" (save)="save(direction)" (delete)="delete(direction)"></app-direction>
+    [isEdit]="isEdit" [isNew]="false" (save)="save($event)" (delete)="delete($event)"></app-direction>
   <app-direction class="direction" *ngIf="isEdit" [isEdit]="isEdit" [isNew]="true" (add)="add($event)"></app-direction>
 </div>

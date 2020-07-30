@@ -4,8 +4,9 @@ import { Recipe } from '../models/recipe';
 import { Ingredient } from '../models/ingredient';
 import { faThumbsDown, faTimes, faPen, faTrash} from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-
+import { Subject, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as RecipeActions from '../store/recipe.actions';
 
 @Component({
   selector: 'app-recipe',
@@ -14,12 +15,15 @@ import { Subject } from 'rxjs';
 })
 export class RecipeComponent implements OnInit {
 
-  @Input()
-  RecipeId: string = "";
+  
+  //RecipeId: string = "";
 
   isEdit: Boolean = false;
   
+  @Input()
   recipe: Recipe = new Recipe();
+
+  recipeState: Observable<{selectedRecipe: Recipe}>;
   
   ingredients: Ingredient[] = [];
   
@@ -31,50 +35,27 @@ export class RecipeComponent implements OnInit {
   faPen=faPen;
   faTrash=faTrash;
   
-  constructor(private recipeService: RecipeService,private route: ActivatedRoute) { }
+  constructor(private recipeService: RecipeService,
+              private route: ActivatedRoute,
+              private store: Store<{recipe: {recipes: Recipe[], selectedRecipe: Recipe}}>) { }
   
   ngOnInit(): void {
-    if (this.RecipeId != "") {
-
-      this.recipeService.getRecipe(this.RecipeId).subscribe((recipe:Recipe) => {
-        this.recipe = recipe;
-        this.updateIngredientsList();
-      })
-    }
     
-    this.recipeService.recipeIdObservable().subscribe(recipeId => {
-      if (recipeId != "") {
-        this.RecipeId = recipeId;
-        this.recipeService.getRecipe(this.RecipeId).subscribe((recipe:Recipe) => {
-          this.recipe = recipe;
+      //this.recipeService.getRecipe(this.recipe);
 
-          this.updateIngredientsList();
-        })
-      }
-    })
-    
-    this.route.params.subscribe(params => {
-      if (Object.keys(params).length != 0){
-        this.recipeService.selectRecipe(params['id']);
-      }
-    });
+      this.store.select('recipe').subscribe((rec:{recipes: Recipe[], selectedRecipe: Recipe})=>{
+        
+        this.recipe = {...rec.selectedRecipe};
+      });
   }
   
   ngOnChanges():void{
-    this.isEdit = this.isNew || this.isEdit; 
-  }
-
-  updateIngredientsList(){
-    this.recipeService.updateRecipeIngredients(this.RecipeId).then(datas=>{
-      this.recipeService.getRecipeIngredients(this.RecipeId).then(ing => {
-      this.ingredients = ing;
-      });
-    });
+    this.isEdit = this.isNew || this.isEdit;
   }
 
   deleteRecipe(){
-    this.recipeService.deleteRecipe(this.RecipeId).subscribe((recipe:Recipe) => {
-      this.RecipeId = "";
+    this.recipeService.deleteRecipe(this.recipe).subscribe((recipe:Recipe) => {
+      this.store.dispatch(new RecipeActions.DeleteRecipe(recipe));
     });
   }
 

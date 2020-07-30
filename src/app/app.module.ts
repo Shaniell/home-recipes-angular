@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import { RemoveIconComponent } from './icons/remove-icon/remove-icon.component';
 import { AddIconComponent } from './icons/add-icon/add-icon.component';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './services/interceptors/auth.interceptor';
+import { RecipeReducer } from './store/recipe.reducer';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { AuthInterceptor } from './services/interceptors/auth.interceptor';
     HttpClientModule,
     FormsModule,
     FontAwesomeModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    StoreModule.forRoot({recipe: RecipeReducer})
   ],
   providers: [
     {

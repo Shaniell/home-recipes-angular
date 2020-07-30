@@ -61,7 +61,6 @@ export class RecipeComponent implements OnInit {
 
   saveRecipe(){
     this.recipeService.updateRecipe(this.recipe).subscribe((currentRecipe: Recipe)=>{
-      console.log(currentRecipe);
     });
   }
 }

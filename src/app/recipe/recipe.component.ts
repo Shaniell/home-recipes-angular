@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as RecipeActions from '../store/recipe.actions';
+import { Direction } from '../models/direction';
 
 @Component({
   selector: 'app-recipe',
@@ -22,6 +23,7 @@ export class RecipeComponent implements OnInit {
   
   @Input()
   recipe: Recipe = new Recipe();
+  recipeToSave: Recipe = new Recipe();
 
   recipeState: Observable<{selectedRecipe: Recipe}>;
   
@@ -45,7 +47,13 @@ export class RecipeComponent implements OnInit {
 
       this.store.select('recipe').subscribe((rec:{recipes: Recipe[], selectedRecipe: Recipe})=>{
         
-        this.recipe = {...rec.selectedRecipe};
+        this.recipeToSave = rec.selectedRecipe;
+
+        //if(this.recipe._id != rec.selectedRecipe._id){
+          this.copy(rec.selectedRecipe);
+        //}
+
+       //this.recipe = {...rec.selectedRecipe};
       });
   }
   
@@ -54,13 +62,40 @@ export class RecipeComponent implements OnInit {
   }
 
   deleteRecipe(){
-    this.recipeService.deleteRecipe(this.recipe).subscribe((recipe:Recipe) => {
+    this.recipeService.deleteRecipe(this.recipeToSave).subscribe((recipe:Recipe) => {
       this.store.dispatch(new RecipeActions.DeleteRecipe(recipe));
     });
   }
 
   saveRecipe(){
-    this.recipeService.updateRecipe(this.recipe).subscribe((currentRecipe: Recipe)=>{
+    
+    this.recipeService.updateRecipe(this.recipeToSave).subscribe((currentRecipe: Recipe)=>{
+      this.recipe = currentRecipe;
     });
   }
+
+  
+
+  copy(recipe: Recipe){
+    this.recipe = new Recipe();
+    this.recipe._id = recipe._id;
+
+    recipe.directions.forEach(x=>{
+        let ings = [];
+        x.ingrediantsUsed.forEach(i=>{
+            ings.push({...i});
+        })
+        this.recipe.directions.push(new Direction(x._id, x.recipeId, x.step, x.type, ings));
+    })
+
+    let ings2 = [];
+    this.recipe.ingredients.forEach(i=>{
+        ings2.push({...i});
+    });
+
+    this.recipe.isPrivate = recipe.isPrivate;
+    this.recipe.owner = recipe.owner;
+    this.recipe.recipeImageUrl = recipe.recipeImageUrl;
+    this.recipe.recipeName = recipe.recipeName;
+}
 }

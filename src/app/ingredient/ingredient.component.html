@@ -7,7 +7,8 @@
     <div class="ingredient-inputs">
       <input type="text" placeholder="Ingredient name" [(ngModel)]="ingredient.ingredientName" />
       <input type="number" placeholder="Amount" [(ngModel)]="ingredient.amount" *ngIf="!isNameOnly"  />
-      <input type="text" placeholder="Measurement type" [(ngModel)]="ingredient.measurementType" *ngIf="!isNameOnly" />
+      <!-- <input type="text" placeholder="Measurement type" [(ngModel)]="ingredient.measurementType" *ngIf="!isNameOnly" /> -->
+      <app-select-list [data]="measurementTypes" (selected)="ingredient.measurementType = $event;"></app-select-list>
     </div>
     <div class="actions">
       <button type="button" class="action add" (click)="add()">✓</button>

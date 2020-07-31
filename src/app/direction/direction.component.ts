@@ -3,6 +3,8 @@ import { Ingredient } from '../models/ingredient';
 import { TimeDuration } from '../helpers/TimeDuration';
 import { Direction } from '../models/direction';
 import { faSave, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from '../services/user.service';
+import { UtilsService } from '../services/utils.service';
 @Component({
   selector: 'app-direction',
   templateUrl: './direction.component.html',
@@ -36,14 +38,30 @@ export class DirectionComponent implements OnInit {
   @Output()
   save: EventEmitter<Direction> = new EventEmitter<Direction>();
 
+  @Output()
+  saveLocal: EventEmitter<Direction> = new EventEmitter<Direction>();
+
   faSave = faSave;
+
+  directionTypes: string[] = [];
 
   isDeleted: Boolean;
 
-  constructor() { }
+  constructor(private utils: UtilsService) { }
 
   ngOnInit(): void {
+    
     this.directionLocal = {...this.direction};
+
+    this.directionTypes = this.utils.getDirectionTypes();
+
+    // this.utils.getDirectionTypes().subscribe(data=>{
+    //   if (this.directionTypes.length == 0){
+    //     data.forEach((item:string) => {
+    //       this.directionTypes.push(item);
+    //     });
+    //   }
+    // })
   }
 
   ngDoCheck(){
@@ -55,7 +73,6 @@ export class DirectionComponent implements OnInit {
     this.add.emit(dir);
     this.direction = new Direction();
     this.directionLocal = new Direction();
-
   }
 
   deleteDirection(){
@@ -68,6 +85,7 @@ export class DirectionComponent implements OnInit {
     this.direction = this.directionLocal;
     this.save.emit(this.direction);
   }
+
 
   UpdateIngredients(ings){
     this.directionLocal.ingrediantsUsed = ings;

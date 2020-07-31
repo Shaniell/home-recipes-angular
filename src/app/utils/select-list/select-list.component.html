@@ -1,0 +1,3 @@
+<select [(ngModel)]="selectedItem" (change)="valueSelected($event.target)">
+    <option *ngFor="let item of data" [selected]="selectedItem == item" >{{item}}</option>
+</select>

@@ -27,7 +27,12 @@
           Type: {{directionLocal.type}}
         </span>
         <div *ngIf="isEdit" class="headline">
-          Type:<input type="text" [(ngModel)]="directionLocal.type" placeholder="type" (blur)="saveDirection()">
+          Type:
+          <!-- <input type="text" [(ngModel)]="directionLocal.type" placeholder="type" (blur)="saveDirection()"> -->
+          <app-select-list 
+            [data]="directionTypes" 
+            (selected)="directionLocal.type = $event;saveDirection();" 
+            [selectedItem]="directionLocal.type"></app-select-list>
         </div>
       </div>
       <div class="direction-explain">

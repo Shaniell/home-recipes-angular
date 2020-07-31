@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Ingredient } from '../models/ingredient';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-ingredient',
@@ -27,11 +28,21 @@ export class IngredientComponent implements OnInit {
   removeIngredient: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
 
   displayStr: string;
+
+  measurementTypes: string[] = [];
   
-  constructor() { }
+  constructor(private utils: UtilsService) { }
 
   ngOnInit(): void {
     this.displayStr = `${this.ingredient.amount || ''} ${this.ingredient.measurementType === 'unit' ? '' : this.ingredient.measurementType} ${this.ingredient.ingredientName}`;
+
+    this.measurementTypes = this.utils.getMeasurementTypes();
+
+    // this.utils.getMeasurementTypes().subscribe(data=>{
+    //   data.forEach((item:string) => {
+    //     this.measurementTypes.push(item);
+    //   });
+    // })
   }
 
   add(){

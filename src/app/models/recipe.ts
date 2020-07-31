@@ -10,4 +10,6 @@ export class Recipe {
                 public ingredients : Ingredient[] = [],
                 public directions : Direction[] = []
                 ){}
+
+    
 }

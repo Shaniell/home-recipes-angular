@@ -38,13 +38,13 @@ export class IngredientsSearchPageComponent implements OnInit {
 
     let ings = [];
     this.recipes.forEach(rec => {
-      ings = Object.create(ing.map(i => i.ingredientName));
+      ings = Object.create(ing.map(i => i.ingredientName.toLowerCase()));
 
       rec.directions.forEach(d => {
         d.ingrediantsUsed.forEach(i => {
 
 
-          let index = ings.indexOf(i.ingredientName);
+          let index = ings.indexOf(i.ingredientName.toLowerCase());
           if (index != -1) {
 
             ings.splice(index, 1);

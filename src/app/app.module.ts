@@ -30,6 +30,7 @@ import { AddIconComponent } from './icons/add-icon/add-icon.component';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './services/interceptors/auth.interceptor';
 import { RecipeReducer } from './store/recipe.reducer';
+import { LogoutIconComponent } from './icons/logout-icon/logout-icon.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { RecipeReducer } from './store/recipe.reducer';
     StopEditIconComponent,
     RemoveIconComponent,
     AddIconComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutIconComponent
   ],
   imports: [
     BrowserModule,

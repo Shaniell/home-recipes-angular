@@ -15,7 +15,7 @@ export class UserService {
   user: User = new User();
   isLoggedIn = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(username: string, password: string): Promise<boolean> {
     //this.isLoggedIn = true;
@@ -58,8 +58,10 @@ export class UserService {
     return this.http.post(`${environment.apiUrl}/users/logout`, {user: this.user});
   }
 
-  logoutAll(username: string, password: string) : Observable<any> {
-    return this.http.post(`${environment.apiUrl}/users/logoutAll`, {user: this.user});
+  logoutAll() {
+    this.http.post(`${environment.apiUrl}/users/logoutAll`, {user: this.user}).subscribe(res=>{
+      this.router.navigate(["Login"]);
+    });
   }
 
   UserProfile(){

@@ -19,7 +19,8 @@ body {
 }
 
 textarea, 
-input[type=text] {
+input[type=text],
+input[type=number]  {
     background-color: #f7f7f7;
     padding: 6px 10px;
     border: 1px solid #ddd;

@@ -111,7 +111,7 @@ export class RecipeService {
     //this.updateRecipeIngredients(currRecipe);
 
     this.updateRecipe(currRecipe).subscribe(res => {
-      this.store.dispatch(new RecipeActions.UpdateRecipe(currRecipe));
+      this.store.dispatch(new RecipeActions.UpdateRecipe(res));
     });
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faCookieBite } from '@fortawesome/free-solid-svg-icons';
+import { faCookieBite, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-main-menu',
@@ -8,9 +9,13 @@ import { faCookieBite } from '@fortawesome/free-solid-svg-icons';
 })
 export class MainMenuComponent implements OnInit {
   faCookieBite = faCookieBite;
-  constructor() { }
+  constructor(private user: UserService) { }
 
   ngOnInit(): void {
+  }
+
+  logoutAll(){
+    this.user.logoutAll();
   }
 
 }

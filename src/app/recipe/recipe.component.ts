@@ -50,10 +50,10 @@ export class RecipeComponent implements OnInit {
         this.recipeToSave = rec.selectedRecipe;
 
         //if(this.recipe._id != rec.selectedRecipe._id){
-          this.copy(rec.selectedRecipe);
+          ///this.copy(rec.selectedRecipe);
         //}
 
-       //this.recipe = {...rec.selectedRecipe};
+       this.recipe = {...rec.selectedRecipe};
       });
   }
   
